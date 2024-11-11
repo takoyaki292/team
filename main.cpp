@@ -10,11 +10,11 @@ const char kWindowTitle[] = "t";
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 
-	float kWindowWidth = 1920; // ウィンドウの横幅
-	float kWindowHeight = 1080; // ウィンドウの縦幅
+	//float kWindowWidth = 1920; // ウィンドウの横幅
+	//float kWindowHeight = 1080; // ウィンドウの縦幅
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, (int)kWindowWidth, (int)kWindowHeight);
+	Novice::Initialize(kWindowTitle, 1920, 1080);
 
 	// インスタンス生成
 	mapChip myMapChip;
