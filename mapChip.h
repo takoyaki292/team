@@ -16,13 +16,13 @@ public:
 	static const int32_t kMaxSpriteCount = 9999;　になっていないとエラーがおきます
 	*/
 	// マップ生成に必要な変数
-	const int mapChipSizeX = 9;  // マップチップの数
-	const int mapChipSizeY = 16;  // マップチップの数
-	const int chipSizeX = 120; // マップチップの横サイズ
-	const int chipSizeY = 120; // マップチップの横サイズ
+	static const int mapChipSizeX = 16;  // マップチップの数
+	static const int mapChipSizeY = 9;  // マップチップの数
+	int chipSizeX = 120; // マップチップの横サイズ
+	int chipSizeY = 120; // マップチップの横サイズ
 
 	// マップ情報
-	int stageMap[9/*mapChipSizeX*/][16/*mapChipSizeY*/] =
+	int stageMap[mapChipSizeY][mapChipSizeX] =
 	{
 		{11, 13, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11},
 		{12, 14, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11},
