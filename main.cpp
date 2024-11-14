@@ -10,18 +10,26 @@ const char kWindowTitle[] = "t";
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 
-	//float kWindowWidth = 1920; // ウィンドウの横幅
-	//float kWindowHeight = 1080; // ウィンドウの縦幅
+	float kWindowWidth = 1920; // ウィンドウの横幅
+	float kWindowHeight = 1080; // ウィンドウの縦幅
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, 1920, 1080);
-
+	//Novice::Initialize(kWindowTitle, 1280, 720);
+	Novice::Initialize(kWindowTitle,(int)kWindowWidth, (int)kWindowHeight);
+	//Novice::SetWindowMode(kFullscreen);
 	// インスタンス生成
 	mapChip myMapChip;
 	Player  myPlayer;
 	Enemy   myEnemy;
 	card    myCard;
-
+	
+	int scane = 0;
+	enum scane
+	{
+		oneGame,
+		twoGame
+	};
+	//int num = 0;
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
@@ -40,13 +48,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		///
 		/// ↓更新処理ここから
 		///
+		switch (scane)
+		{
+		case oneGame:
+			// 移動処理
+			myPlayer.Move();
+			myEnemy.MovePattern1(myPlayer);
 
-		// 移動処理
-		myPlayer.Move();
-		myEnemy.MovePattern1(myPlayer);
-
-		// 獲得処理(カード)
-		myCard.GetCard();
+			// 獲得処理(カード)
+			myCard.GetCard();
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			{
+				scane = twoGame;
+			}
+			
+			break;
+		case twoGame:
+			
+			break;
+		}
+		
 
 		///
 		/// ↑更新処理ここまで
@@ -55,15 +76,24 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		///
 		/// ↓描画処理ここから
 		///
+		switch (scane)
+		{
+		case oneGame:
+			// マップチップの描画
+			myMapChip.NoviceMapChip(myMapChip.mapChipSizeX, myMapChip.mapChipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
 
-		// マップチップの描画
-		myMapChip.NoviceMapChip(myMapChip.mapChipSizeX, myMapChip.mapChipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
+			//プレイヤーの描画
+			myPlayer.Drow();
 
-		//プレイヤーの描画
-		myPlayer.Drow();
-
-		//敵の描画
-		myEnemy.Drow();
+			//敵の描画
+			myEnemy.Drow();
+			
+			break;
+		case twoGame:
+			myCard.Draw();
+			break;
+		}
+		
 
 
 		// デバックの描画

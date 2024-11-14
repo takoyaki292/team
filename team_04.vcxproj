@@ -144,7 +144,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="card.h" />
+    <ClInclude Include="con.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameDataManager.h" />
     <ClInclude Include="mapChip.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="structData.h" />
