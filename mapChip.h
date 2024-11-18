@@ -15,11 +15,33 @@ public:
 	// スプライトの最大数
 	static const int32_t kMaxSpriteCount = 9999;　になっていないとエラーがおきます
 	*/
+	
+
+	///==========================================================================
+	// 画像の変数の初期化
+	///==========================================================================
+
+	
+
+
+
+	//マップチップの表示
+	void NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16/*mapChipSizeY*/]);
+
+	// 他のcppで変数の状態を取得するための関数
+	static mapChip& GetInstance()
+	{
+		static mapChip instance;
+		return instance;
+	}
+	int chipSizeX = 120; // マップチップの横サイズ
+	int chipSizeY = 120; // マップチップの横サイズ
+private:
 	// マップ生成に必要な変数
 	static const int mapChipSizeX = 16;  // マップチップの数
 	static const int mapChipSizeY = 9;  // マップチップの数
-	int chipSizeX = 120; // マップチップの横サイズ
-	int chipSizeY = 120; // マップチップの横サイズ
+	
+
 
 	// マップ情報
 	int stageMap[mapChipSizeY][mapChipSizeX] =
@@ -34,10 +56,7 @@ public:
 		{11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11},
 		{11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11},
 	};
-
-	///==========================================================================
-	// 画像の変数の初期化
-	///==========================================================================
+		
 
 	// マップチップ画像(仮)
 	allMapChip myTexture
@@ -47,17 +66,4 @@ public:
 		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード2 */ {false}, // 当たっているか判定するフラグ
 		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード3 */ {false}  // 当たっているか判定するフラグ
 	};
-
-
-
-	//マップチップの表示
-	void NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16/*mapChipSizeY*/]);
-
-	// 他のcppで変数の状態を取得するための関数
-	static mapChip& GetInstance()
-	{
-		static mapChip instance;
-		return instance;
-	}
-
 };

@@ -2,6 +2,19 @@
 #include "mapChip.h"
 #include "Player.h"
 
+card::card()
+{
+	for (int i = 0; i < numC; i++)
+	{
+		haveCardF[i] = false;
+	}
+	
+}
+
+card::~card()
+{
+}
+
 void card::GetCard()
 {
 	// カード1
@@ -33,7 +46,7 @@ void card::GetCard()
 	{
 		if (haveCardF[i] == true)
 		{
-			cardPosition[i] = Vector3(600.f+i*70.f, 800.f, 0);
+			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
 		}
 	}
 }
@@ -43,9 +56,9 @@ void card::contentCard()
 	{
 		if (haveCardF[i] == true)
 		{
-			num = i;
-			break;
+			num = i+1;
 		}
+		
 	}
 }
 
@@ -54,9 +67,17 @@ void card::Draw()
 	
 	for (int i = 0; i < numC; i++)
 	{
-		if (haveCardF[i] == true)
+		if (haveCardF[0] == true)
 		{	
 			Novice::DrawBox((int)cardPosition[i].x, (int)cardPosition[i].y, w, h, 0.0f, WHITE, kFillModeSolid);
+		}
+		if (haveCardF[1] == true)
+		{
+			Novice::DrawBox((int)cardPosition[i].x, (int)cardPosition[i].y, w, h, 0.0f, BLACK, kFillModeSolid);
+		}^
+		if (haveCardF[2] == true)
+		{
+			Novice::DrawBox((int)cardPosition[i].x, (int)cardPosition[i].y, w, h, 0.0f, GREEN, kFillModeSolid);
 		}
 	}
 }

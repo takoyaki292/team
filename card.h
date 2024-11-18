@@ -3,6 +3,9 @@
 class card
 {
 public:
+
+	card();
+	~card();
 	// カードを手に入れた時の関数
 	void GetCard();
 	/// <summary>
