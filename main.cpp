@@ -64,7 +64,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
-			
+			myCard.MouseC();
+			myCard.contentCard();
 			break;
 		}
 		
@@ -80,7 +81,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		{
 		case oneGame:
 			// マップチップの描画
-			myMapChip.NoviceMapChip(myMapChip.mapChipSizeX, myMapChip.mapChipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
+			//myMapChip.NoviceMapChip(myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
 
 			//プレイヤーの描画
 			myPlayer.Drow();

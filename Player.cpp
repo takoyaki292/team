@@ -2,7 +2,7 @@
 #include "mapChip.h"
 #include "Novice.h"
 
-void Player::Drow()
+void Player::Drow() const
 {
 	Novice::DrawQuad
 	(
@@ -46,7 +46,7 @@ void Player::Move()
 
 	if (preKeys[DIK_A] == 0 && keys[DIK_A] != 0 || preKeys[DIK_LEFT] == 0 && keys[DIK_LEFT] != 0)
 	{
-		if (player.position.x - player.Size.x > 0) // 範囲外に出ないようにする処理
+		if (player.position.x - player.Size.x > 0) 
 		{
 			player.position.x -= player.speed.x;
 			player.speed.x = 0;
@@ -56,7 +56,7 @@ void Player::Move()
 
 	if (preKeys[DIK_W] == 0 && keys[DIK_W] != 0 || preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0)
 	{
-		if (player.position.y - player.Size.y > 0) // 範囲外に出ないようにする処理
+		if (player.position.y - player.Size.y > 0) 
 		{
 			player.position.y -= player.speed.y;
 			player.speed.y = 0;
@@ -78,20 +78,20 @@ void Player::Move()
 	// 当たり判定処理
 	///====================
 
-	if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 12)// カード1に触れたら 
-	{
-		mapChip::GetInstance().myTexture.card1Flag = true; // カードを消す
-	}
-
-	if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 13) // カード2に触れたら 
-	{
-		mapChip::GetInstance().myTexture.card2Flag = true; // カードを消す
-	}
-
-	if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 14) // カード3に触れたら 
-	{
-		mapChip::GetInstance().myTexture.card3Flag = true; // カードを消す
-	}
+	//if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 12)// カード1に触れたら 
+	//{
+	//	mapChip::GetInstance().myTexture.card1Flag = true; // カードを消す
+	//}
+	//
+	//if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 13) // カード2に触れたら 
+	//{
+	//	mapChip::GetInstance().myTexture.card2Flag = true; // カードを消す
+	//}
+	//
+	//if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 14) // カード3に触れたら 
+	//{
+	//	mapChip::GetInstance().myTexture.card3Flag = true; // カードを消す
+	//}
 
 
 }

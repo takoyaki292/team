@@ -22,7 +22,7 @@ public:
 		{Novice::LoadTexture("./Resources/images/player/enemy01.png")}
 	};
 
-	void Drow();
+	void Drow() const;
 	void MovePattern1(Player& myPlayer);
 
 };

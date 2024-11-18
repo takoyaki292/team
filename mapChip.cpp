@@ -1,11 +1,8 @@
 ﻿#include "mapChip.h"
-#include "Player.h"
 #include <Novice.h>
 
 void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16/*mapChipSizeY*/])
 {
-	Player myPlayer_;
-
 	// マップチップの生成
 	for (int y = 0; y < mapSizeX; y++)
 	{
