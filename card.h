@@ -34,7 +34,7 @@ private:
 	Vector3 cardPosition[numC] = {};
 	int w = 50;
 	int h = 100;
-	int num = 0;
+	int num[numC] = {};
 
 	int mouseX;
 	int mouseY;
