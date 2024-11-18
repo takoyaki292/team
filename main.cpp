@@ -64,7 +64,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+
 			myCard.MouseC();
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			{
+				myCard.isT = false;
+			}
 			myCard.contentCard();
 			break;
 		}

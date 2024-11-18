@@ -8,7 +8,13 @@ card::card()
 	{
 		haveCardF[i] = true;
 	}
-
+	for (int i = 0; i < numC; i++)
+	{
+		if (haveCardF[i] == true)
+		{
+			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
+		}
+	}
 }
 
 card::~card()
@@ -42,13 +48,13 @@ void card::GetCard()
 	//	Player::GetInstance().player.position.x += Player::GetInstance().player.speed.x;
 	//	haveCardF[2] = true;
 	//}
-	for (int i = 0; i < numC; i++)
-	{
-		if (haveCardF[i] == true)
-		{
-			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
-		}
-	}
+	//for (int i = 0; i < numC; i++)
+	//{
+	//	if (haveCardF[i] == true)
+	//	{
+	//		cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
+	//	}
+	//}
 }
 void card::contentCard()
 {
@@ -70,7 +76,7 @@ void card::Draw()
 	{
 		if (haveCardF[i] == true)
 		{
-			Novice::DrawBox((int)cardPosition[i].x, (int)cardPosition[i].y, w, h, 0.0f, GREEN, kFillModeSolid);
+			Novice::DrawBox((int)cardPosition[i].x-w/2, (int)cardPosition[i].y-h/2, w, h, 0.0f, GREEN, kFillModeSolid);
 		}
 		
 	}
@@ -80,6 +86,8 @@ void card::Draw()
 
 void card::MouseC()
 {
+	Novice::GetMousePosition(&mouseX, &mouseY);
+
 	float BX1[numC];
 	float BX2[numC];
 	float BY1[numC];
@@ -92,21 +100,24 @@ void card::MouseC()
 		BX2[i] = cardPosition[i].x + halfW;
 		BY1[i] = cardPosition[i].y - halfH;
 		BY2[i] = cardPosition[i].y + halfH;
-		Novice::GetMousePosition(&mouseX, &mouseY);
 
-		if (mouseX >= BX1[i] && mouseX <= BX2[i] && mouseY >= BY1[i] && mouseY <= BY2[i])
+
+		if (mouseX > BX1[i] && mouseX < BX2[i] && mouseY > BY1[i] && mouseY < BY2[i])
 		{
 			isMouse = true;
 		}
-		else
-		{
-			isMouse = false;
-		}
+		
+		
+	}
 
-		if (isMouse == true && Novice::IsTriggerMouse(0))
-		{
-			isT = true;
-		}
+	if (isMouse == true && Novice::IsTriggerMouse(0))
+	{
+		isT = true;
+	}
+
+	if (isT)
+	{
+		isMouse = false;
 	}
 }
 

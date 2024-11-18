@@ -20,18 +20,24 @@ public:
 	/// </summary>
 	void Draw();
 
+
+	/// <summary>
+	/// カードとマウスの当たり判定
+	/// </summary>
 	void MouseC();
 	static const int numC =7;
 	bool haveCardF[numC] = {};
+	//マウスの左が押されているかのフラグ
+	bool isT = false;
 private:
 	int haveCard[numC] = {};
 	Vector3 cardPosition[numC] = {};
 	int w = 50;
 	int h = 100;
-	int num = -1;
+	int num = 0;
 
 	int mouseX;
 	int mouseY;
+	//マウスがカードの座標いるかのフラグ
 	bool isMouse = false;
-	bool isT = false;
 };
