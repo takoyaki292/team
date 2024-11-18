@@ -36,12 +36,21 @@ public:
 	}
 	int chipSizeX = 120; // マップチップの横サイズ
 	int chipSizeY = 120; // マップチップの横サイズ
+	
 private:
+	
+
+	// マップチップ画像(仮)
+	allMapChip myTexture
+	{
+		{ Novice::LoadTexture("./Resources/images/mapChip/block01.png") }, /* ブロック*/ {false}, // 当たっているか判定するフラグ
+		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード1 */ {false}, // 当たっているか判定するフラグ
+		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード2 */ {false}, // 当たっているか判定するフラグ
+		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード3 */ {false}  // 当たっているか判定するフラグ
+	};
 	// マップ生成に必要な変数
 	static const int mapChipSizeX = 16;  // マップチップの数
 	static const int mapChipSizeY = 9;  // マップチップの数
-	
-
 
 	// マップ情報
 	int stageMap[mapChipSizeY][mapChipSizeX] =
@@ -56,14 +65,7 @@ private:
 		{11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11},
 		{11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11},
 	};
+
 		
 
-	// マップチップ画像(仮)
-	allMapChip myTexture
-	{
-		{ Novice::LoadTexture("./Resources/images/mapChip/block01.png") }, /* ブロック*/ {false}, // 当たっているか判定するフラグ
-		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード1 */ {false}, // 当たっているか判定するフラグ
-		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード2 */ {false}, // 当たっているか判定するフラグ
-		{ Novice::LoadTexture("./Resources/images/mapChip/card01.png")  }, /* カード3 */ {false}  // 当たっているか判定するフラグ
-	};
 };

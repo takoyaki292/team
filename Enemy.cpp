@@ -2,7 +2,7 @@
 #include "Player.h"
 #include <time.h>
 
-void Enemy::Drow()
+void Enemy::Drow() const
 {
 	Novice::DrawQuad(
 		(int)enemy.LeftTop.x + (int)enemy.position.x, (int)enemy.LeftTop.y + (int)enemy.position.y,

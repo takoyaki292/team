@@ -2,7 +2,7 @@
 #include "mapChip.h"
 #include "Novice.h"
 
-void Player::Drow()
+void Player::Drow() const
 {
 	Novice::DrawQuad
 	(

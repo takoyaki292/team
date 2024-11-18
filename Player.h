@@ -34,7 +34,7 @@ public:
 	int playerTilePosX = (int)player.position.x / (int)player.Size.x; //現在のプレイヤーのX座標
 	int playerTilePosY = (int)player.position.y / (int)player.Size.y; //現在のプレイヤーのY座標
 
-	void Drow();
+	void Drow() const;
 	void Move();
 
 	// 他のcppで変数の状態を取得するための関数
