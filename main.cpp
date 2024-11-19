@@ -64,8 +64,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+
 			myCard.MouseC();
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			{
+				myCard.isT = false;
+			}
 			myCard.contentCard();
+			myEnemy.BattleUpdate(myCard);
 			break;
 		}
 		
@@ -91,6 +97,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+			myEnemy.BattleDraw();
 			myCard.Draw();
 			break;
 		}

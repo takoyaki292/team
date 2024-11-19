@@ -18,8 +18,8 @@ void Player::Drow() const
 
 void Player::Move()
 {
-	player.speed.x = player.Size.x; // スピードのリセット
-	player.speed.y = player.Size.y; // スピードのリセット
+	//player.speed.x = player.Size.x; // スピードのリセット
+	//player.speed.y = player.Size.y; // スピードのリセット
 
 	playerTilePosX = (int)player.position.x / (int)player.Size.x;// 現在のプレイヤーの更新
 	playerTilePosY = (int)player.position.y / (int)player.Size.y;// 現在のプレイヤーの更新
