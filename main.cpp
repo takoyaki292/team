@@ -71,6 +71,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 				myCard.isT = false;
 			}
 			myCard.contentCard();
+			myEnemy.BattleUpdate(myCard);
 			break;
 		}
 		
@@ -96,6 +97,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+			myEnemy.BattleDraw();
 			myCard.Draw();
 			break;
 		}

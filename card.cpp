@@ -20,7 +20,6 @@ card::card()
 card::~card()
 {
 }
-
 void card::GetCard()
 {
 	// カード1
@@ -58,13 +57,14 @@ void card::GetCard()
 }
 void card::contentCard()
 {
+	
 	for (int i = 0; i < numC; i++)
 	{
 		if(haveCardF[i]) {
 			num[i] = i + 1;
 		}
 	}
-	
+	//if(isT==true)
 }
 
 void card::Draw()
@@ -98,20 +98,20 @@ void card::Draw()
 		Novice::DrawBox((int)cardPosition[6].x - w / 2, (int)cardPosition[6].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
 	Novice::ScreenPrintf(0, 0, "isT:%d", isT);
-	//for (int i = 0; i < numC; i++)
-	//{
-	//	Novice::ScreenPrintf(0, 50+i*30, "num[%d]:%d", i, num[i]);
-	//}
+	for (int i = 0; i < numC; i++)
+	{
+		Novice::ScreenPrintf(0, 50+i*30, "num[%d]:%d", i,num[i]);
+	}
 }
 
 void card::MouseC()
 {
 	Novice::GetMousePosition(&mouseX, &mouseY);
 
-	float BX1[numC];
-	float BX2[numC];
-	float BY1[numC];
-	float BY2[numC];
+	float BX1[numC]={};
+	float BX2[numC]={};
+	float BY1[numC]={};
+	float BY2[numC]={};
 	int halfW = w / 2; // 幅を半分にする
 	int halfH = h / 2; // 高さを半分にする
 	for (int i = 0; i < card::numC; i++)
@@ -120,24 +120,28 @@ void card::MouseC()
 		BX2[i] = cardPosition[i].x + halfW;
 		BY1[i] = cardPosition[i].y - halfH;
 		BY2[i] = cardPosition[i].y + halfH;
-
-
 		if (mouseX > BX1[i] && mouseX < BX2[i] && mouseY > BY1[i] && mouseY < BY2[i])
 		{
 			isMouse = true;
+			//押した
+			if (isMouse == true && Novice::IsTriggerMouse(0))
+			{
+				isT = true;
+				haveCardF[i] = false;
+				attack = num[i];
+				num[i] = 0;
+			}
 		}
-		
-		
-	}
-
-	if (isMouse == true && Novice::IsTriggerMouse(0))
-	{
-		isT = true;
-	}
-
-	if (isT)
-	{
-		isMouse = false;
+		else
+		{
+			isMouse = false;
+		}
+		if (isT)
+		{
+			
+			isMouse = false;
+			
+		}
 	}
 }
 

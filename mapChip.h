@@ -15,16 +15,6 @@ public:
 	// スプライトの最大数
 	static const int32_t kMaxSpriteCount = 9999;　になっていないとエラーがおきます
 	*/
-	
-
-	///==========================================================================
-	// 画像の変数の初期化
-	///==========================================================================
-
-	
-
-
-
 	//マップチップの表示
 	void NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16/*mapChipSizeY*/]);
 
