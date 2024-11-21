@@ -71,8 +71,6 @@ void Enemy::BattleDraw() const
 		(int)BattlEnemy.Texture, WHITE);
 
 	Novice::DrawBox(960, 50, hp * 20, 30, 0.0f, RED, kFillModeSolid);
-	//koNovice::ScreenPrintf(0, 20, "hp%d", hp);
-	//Novice::DrawBox(960, 50, fHp * 30, 30, 0.0f, GREEN, kFillModeSolid);
 }
 
 void Enemy::BattleUpdate(Player& player)

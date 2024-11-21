@@ -22,7 +22,7 @@ public:
 
 	original player
 	{
-		{(float)myMapChip.chipSizeX,(float)myMapChip.chipSizeY,0},                                     // サイズ
+		{(float)myMapChip.chipSizeX,(float)myMapChip.chipSizeY,0},// サイズ
 		{player.Size.x / 2, player.Size.y / 2,0},      // 半径
 		{0 + player.Radius.x, 0 + player.Radius.y, 0}, // ポジション
 		{0 - player.Radius.x, 0 - player.Radius.y, 0}, // 左上
@@ -32,6 +32,7 @@ public:
 		{player.Size.x, player.Size.y, 0},             // スピード
 		{Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
 	};
+
 
 	int playerTilePosX = (int)player.position.x / (int)player.Size.x; //現在のプレイヤーのX座標
 	int playerTilePosY = (int)player.position.y / (int)player.Size.y; //現在のプレイヤーのY座標

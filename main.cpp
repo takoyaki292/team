@@ -100,6 +100,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case twoGame:
 			myEnemy.BattleDraw();
 			myCard.Draw();
+			myPlayer.Drow();
 			Novice::ScreenPrintf(0, 300, "player.hp:%d", myPlayer.hp);
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
 
