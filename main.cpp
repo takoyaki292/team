@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case oneGame:
 			// 移動処理
 			myPlayer.Move();
-			myEnemy.MovePattern1(myPlayer);
+			//myEnemy.MovePattern1(myPlayer);
 
 			// 獲得処理(カード)
 			myCard.GetCard();
@@ -64,8 +64,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+
 			myCard.MouseC();
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			{
+				myCard.isT = false;
+			}
 			myCard.contentCard();
+			myPlayer.BattleUpdate(myCard, myEnemy);
+			
 			break;
 		}
 		
@@ -91,6 +98,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+			myEnemy.BattleDraw();
 			myCard.Draw();
 			break;
 		}

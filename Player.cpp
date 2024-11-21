@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "mapChip.h"
 #include "Novice.h"
-
+#include "Enemy.h"
 void Player::Drow() const
 {
 	Novice::DrawQuad
@@ -18,8 +18,8 @@ void Player::Drow() const
 
 void Player::Move()
 {
-	player.speed.x = player.Size.x; // スピードのリセット
-	player.speed.y = player.Size.y; // スピードのリセット
+	//player.speed.x = player.Size.x; // スピードのリセット
+	//player.speed.y = player.Size.y; // スピードのリセット
 
 	playerTilePosX = (int)player.position.x / (int)player.Size.x;// 現在のプレイヤーの更新
 	playerTilePosY = (int)player.position.y / (int)player.Size.y;// 現在のプレイヤーの更新
@@ -94,4 +94,21 @@ void Player::Move()
 	//}
 
 
+}
+
+void Player::BattleUpdate(card& playerCard, Enemy& targetEnemy)
+{
+	if (playerCard.attack != 0 && targetEnemy.hp> 0)
+	{
+		targetEnemy.hp-= playerCard.attack;
+		playerCard.attack = 0;   // 攻撃後にリセット
+	}
+}
+
+void Player::IsAlive()
+{
+	if (isAlive == true&&isAlive>=0)
+	{
+		isAlive = 0;
+	}
 }
