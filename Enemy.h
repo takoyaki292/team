@@ -9,11 +9,6 @@ class Enemy
 {
 public:
 
-	void Drow();
-	void MovePattern1(Player& myPlayer);
-	void BattleDraw() const;
-	void BattleUpdate(card& playerCard);
-private:
 	mapChip myMapChip;
 	card card_;
 	original enemy{
@@ -38,8 +33,14 @@ private:
 		{0, 0, 0}, // スピード
 		{Novice::LoadTexture("./Resources/images/player/enemy01.png")}
 	};
-	//フルのhp
-	const int fHp = 20;
-	
+
+	void Drow() const;
+	//void MovePattern1(Player& myPlayer);
+	void BattleDraw() const;
+	void BattleUpdate(card& playerCard);
 	int hp = 20;
+
+private:
+	//フルのhp
+	const int fHp = hp;
 };

@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case oneGame:
 			// 移動処理
 			myPlayer.Move();
-			myEnemy.MovePattern1(myPlayer);
+			//myEnemy.MovePattern1(myPlayer);
 
 			// 獲得処理(カード)
 			myCard.GetCard();
@@ -71,7 +71,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 				myCard.isT = false;
 			}
 			myCard.contentCard();
-			myEnemy.BattleUpdate(myCard);
+			myPlayer.BattleUpdate(myCard, myEnemy);
+			
 			break;
 		}
 		

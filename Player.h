@@ -1,10 +1,12 @@
 ﻿#pragma once
-#pragma once
 #include "Vector3.h"
 #include <Novice.h>
 #include "structData.h"
 #include "mapChip.h"
+#include "card.h"
+//#include "Enemy.h"
 
+class Enemy;
 class Player
 {
 public:
@@ -37,6 +39,9 @@ public:
 	void Drow() const;
 	void Move();
 
+	void BattleUpdate(card& playerCard, Enemy& targetEnemy);
+
+	void IsAlive();
 	// 他のcppで変数の状態を取得するための関数
 	static Player& GetInstance()
 	{
@@ -44,4 +49,5 @@ public:
 		return instance;
 	}
 
+	bool isAlive = false;
 };
