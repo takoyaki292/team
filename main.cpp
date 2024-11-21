@@ -72,7 +72,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			}
 			myCard.contentCard();
 			myPlayer.BattleUpdate(myCard, myEnemy);
-			
+			myEnemy.BattleUpdate(myPlayer);
 			break;
 		}
 		
@@ -100,6 +100,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case twoGame:
 			myEnemy.BattleDraw();
 			myCard.Draw();
+			Novice::ScreenPrintf(0, 300, "player.hp:%d", myPlayer.hp);
+			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
+
 			break;
 		}
 		

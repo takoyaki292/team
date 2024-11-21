@@ -1,16 +1,13 @@
 ﻿#pragma once
-#pragma once
-#include "Player.h"
 #include "structData.h"
 #include "mapChip.h"
 #include "card.h"
 
+class Player;
+
 class Enemy
 {
 public:
-
-	mapChip myMapChip;
-	card card_;
 	original enemy{
 		{(float)myMapChip.chipSizeX,(float)myMapChip.chipSizeY, 0}, // サイズ
 		{enemy.Size.x / 2, enemy.Size.y / 2, 0}, // 半径
@@ -36,11 +33,24 @@ public:
 
 	void Drow() const;
 	//void MovePattern1(Player& myPlayer);
+	
+	/// <summary>
+	/// 戦闘フェーズの描画
+	/// </summary>
 	void BattleDraw() const;
-	void BattleUpdate(card& playerCard);
+	/// <summary>
+	/// playerに攻撃できる関数
+	/// </summary>
+	/// <param name="player"></param>
+	void BattleUpdate(Player& player);
 	int hp = 20;
 
+	bool turn = false;
 private:
+	mapChip myMapChip;
+	card card_;
 	//フルのhp
 	const int fHp = hp;
+	//敵の攻撃力(仮)
+	int attck = 5;
 };

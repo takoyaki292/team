@@ -71,15 +71,23 @@ void Enemy::BattleDraw() const
 		(int)BattlEnemy.Texture, WHITE);
 
 	Novice::DrawBox(960, 50, hp * 20, 30, 0.0f, RED, kFillModeSolid);
-	Novice::ScreenPrintf(0, 20, "hp%d", hp);
+	//koNovice::ScreenPrintf(0, 20, "hp%d", hp);
 	//Novice::DrawBox(960, 50, fHp * 30, 30, 0.0f, GREEN, kFillModeSolid);
 }
 
-void Enemy::BattleUpdate(card& playerCard)
+void Enemy::BattleUpdate(Player& player)
 {
-	if (playerCard.attack != 0 && hp >= 0)
+	if (player.turn == false)
 	{
-		hp -= playerCard.attack;
-		playerCard.attack = 0;   // 攻撃後にリセット
+		turn = true;
+		player.turn =false;
+	}
+
+	if (turn == true)
+	{
+		player.hp -= attck;
+		turn = false;
+		player.turn = true;
 	}
 }
+

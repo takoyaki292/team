@@ -38,16 +38,24 @@ public:
 
 	void Drow() const;
 	void Move();
-
-	void BattleUpdate(card& playerCard, Enemy& targetEnemy);
+	/// <summary>
+	/// Enemyに攻撃出来るようにした
+	/// </summary>
+	/// <param name="playerCard"></param>
+	/// <param name="enemy"></param>
+	void BattleUpdate(card& playerCard, Enemy& enemy);
 
 	void IsAlive();
+
 	// 他のcppで変数の状態を取得するための関数
 	static Player& GetInstance()
 	{
 		static Player instance;
 		return instance;
 	}
-
+	
+	int hp = 20;
 	bool isAlive = false;
+	bool turn = true;
+	//bool isAttck = true;
 };

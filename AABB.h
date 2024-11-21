@@ -2,11 +2,7 @@
 #include "Vector2.h"
 #include "Vector3.h"
 
-struct  AABB
-{
-	Vector2 min;
-	Vector2 max;
-};
+
 struct  AABB
 {
     Vector3 min;
@@ -23,7 +19,6 @@ bool isColliding(const AABB& box1, const AABB& box2) {
     if (box1.max.y < box2.min.y || box1.min.y > box2.max.y) {
         return false;
     }
-
     // —¼•û‚Ì²‚Åd‚È‚Á‚Ä‚¢‚ê‚ÎÕ“Ë‚µ‚Ä‚¢‚é
     return true;
 }

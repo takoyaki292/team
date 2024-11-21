@@ -14,6 +14,20 @@ void Player::Drow() const
 		(int)player.Size.x, (int)player.Size.y,
 		(int)player.Texture, WHITE
 	);
+	//if (isAlive == true)
+	//{
+	//	Novice::DrawQuad
+	//	(
+	//		(int)player.LeftTop.x + (int)player.position.x, (int)player.LeftTop.y + (int)player.position.y,
+	//		(int)player.RightTop.x + (int)player.position.x, (int)player.RightTop.y + (int)player.position.y,
+	//		(int)player.LeftBottom.x + (int)player.position.x, (int)player.LeftBottom.y + (int)player.position.y,
+	//		(int)player.RightBottom.x + (int)player.position.x, (int)player.RightBottom.y + (int)player.position.y,
+	//		0, 0,
+	//		(int)player.Size.x, (int)player.Size.y,
+	//		(int)player.Texture, WHITE
+	//	);
+	//}
+	
 }
 
 void Player::Move()
@@ -96,19 +110,24 @@ void Player::Move()
 
 }
 
-void Player::BattleUpdate(card& playerCard, Enemy& targetEnemy)
+void Player::BattleUpdate(card& playerCard, Enemy& enemy)
 {
-	if (playerCard.attack != 0 && targetEnemy.hp> 0)
+	if (playerCard.attack != 0 && enemy.hp> 0)
 	{
-		targetEnemy.hp-= playerCard.attack;
-		playerCard.attack = 0;   // 攻撃後にリセット
+		if (turn == true&&enemy.turn==false)
+		{
+			
+			enemy.hp -= playerCard.attack;
+			playerCard.attack = 0;   // 攻撃後にリセット
+			turn = false;
+		}
 	}
 }
 
 void Player::IsAlive()
 {
-	if (isAlive == true&&isAlive>=0)
+	if (isAlive == true&&hp<=0)
 	{
-		isAlive = 0;
+		//isAlive = 0;
 	}
 }
