@@ -18,25 +18,6 @@ public:
 
 	int MoveCount = 0; //移動するたびにカウントしていく変数
 
-	mapChip myMapChip;
-
-	original player
-	{
-		{(float)myMapChip.chipSizeX,(float)myMapChip.chipSizeY,0},// サイズ
-		{player.Size.x / 2, player.Size.y / 2,0},      // 半径
-		{0 + player.Radius.x, 0 + player.Radius.y, 0}, // ポジション
-		{0 - player.Radius.x, 0 - player.Radius.y, 0}, // 左上
-		{0 + player.Radius.x, 0 - player.Radius.y, 0}, // 右上
-		{0 - player.Radius.x, 0 + player.Radius.y, 0}, // 左下
-		{0 + player.Radius.x, 0 + player.Radius.y, 0}, // 右下
-		{player.Size.x, player.Size.y, 0},             // スピード
-		{Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
-	};
-
-
-	int playerTilePosX = (int)player.position.x / (int)player.Size.x; //現在のプレイヤーのX座標
-	int playerTilePosY = (int)player.position.y / (int)player.Size.y; //現在のプレイヤーのY座標
-
 	void Drow() const;
 	void Move();
 	/// <summary>
@@ -57,6 +38,24 @@ public:
 	
 	int hp = 20;
 	bool isAlive = false;
-	bool turn = true;
-	//bool isAttck = true;
+	bool isTurn = true;
+
+private:
+	mapChip myMapChip;
+	original player
+	{
+		{(float)myMapChip.chipSizeX,(float)myMapChip.chipSizeY,0},// サイズ
+		{player.Size.x / 2, player.Size.y / 2,0},      // 半径
+		{0 + player.Radius.x, 0 + player.Radius.y, 0}, // ポジション
+		{0 - player.Radius.x, 0 - player.Radius.y, 0}, // 左上
+		{0 + player.Radius.x, 0 - player.Radius.y, 0}, // 右上
+		{0 - player.Radius.x, 0 + player.Radius.y, 0}, // 左下
+		{0 + player.Radius.x, 0 + player.Radius.y, 0}, // 右下
+		{player.Size.x, player.Size.y, 0},             // スピード
+		{Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
+	};
+
+
+	int playerTilePosX = (int)player.position.x / (int)player.Size.x; //現在のプレイヤーのX座標
+	int playerTilePosY = (int)player.position.y / (int)player.Size.y; //現在のプレイヤーのY座標
 };

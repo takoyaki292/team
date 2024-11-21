@@ -45,7 +45,7 @@ public:
 	void BattleUpdate(Player& player);
 	int hp = 20;
 
-	bool turn = false;
+	bool isTurn= false;
 private:
 	mapChip myMapChip;
 	card card_;

@@ -115,6 +115,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="mapChip.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Skill.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\DirectXGame\3d\Camera.h" />
@@ -152,6 +153,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="mapChip.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="structData.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />

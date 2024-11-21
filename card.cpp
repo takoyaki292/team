@@ -124,7 +124,7 @@ void card::MouseC()
 		{
 			isMouse = true;
 			//押した
-			if (isMouse == true && Novice::IsTriggerMouse(0))
+			if (Novice::IsTriggerMouse(0))
 			{
 				isT = true;
 				haveCardF[i] = false;
@@ -136,11 +136,10 @@ void card::MouseC()
 		{
 			isMouse = false;
 		}
+		//他と同じようにならないように処理を書いてる
 		if (isT)
 		{
-			
-			isMouse = false;
-			
+			isMouse = false;		
 		}
 	}
 }

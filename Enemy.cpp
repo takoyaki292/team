@@ -75,17 +75,17 @@ void Enemy::BattleDraw() const
 
 void Enemy::BattleUpdate(Player& player)
 {
-	if (player.turn == false)
+	if (player.isTurn == false)
 	{
-		turn = true;
-		player.turn =false;
+		isTurn = true;
+		player.isTurn =false;
 	}
 
-	if (turn == true)
+	if (isTurn == true)
 	{
 		player.hp -= attck;
-		turn = false;
-		player.turn = true;
+		isTurn = false;
+		player.isTurn = true;
 	}
 }
 

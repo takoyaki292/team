@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "card.h"
+#include "Skill.h"
 
 const char kWindowTitle[] = "t";
 
@@ -22,7 +23,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Player  myPlayer;
 	Enemy   myEnemy;
 	card    myCard;
-	
+	Skill skill_;
+
 	int scane = 0;
 	enum scane
 	{
@@ -73,6 +75,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myCard.contentCard();
 			myPlayer.BattleUpdate(myCard, myEnemy);
 			myEnemy.BattleUpdate(myPlayer);
+
+			skill_.Update();
 			break;
 		}
 		
@@ -104,6 +108,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::ScreenPrintf(0, 300, "player.hp:%d", myPlayer.hp);
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
 
+			skill_.Draw();
 			break;
 		}
 		
