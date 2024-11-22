@@ -23,8 +23,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Player  myPlayer;
 	Enemy   myEnemy;
 	card    myCard;
-	Skill skill_;
-
+	Skill* skill_=new Skill();
+	
 	int scane = 0;
 	enum scane
 	{
@@ -76,7 +76,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myPlayer.BattleUpdate(myCard, myEnemy);
 			myEnemy.BattleUpdate(myPlayer);
 
-			skill_.Update();
+			skill_->Update();
 			break;
 		}
 		
@@ -108,7 +108,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::ScreenPrintf(0, 300, "player.hp:%d", myPlayer.hp);
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
 
-			skill_.Draw();
+			skill_->Draw();
 			break;
 		}
 		

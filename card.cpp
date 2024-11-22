@@ -97,11 +97,6 @@ void card::Draw()
 	{
 		Novice::DrawBox((int)cardPosition[6].x - w / 2, (int)cardPosition[6].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
-	//Novice::ScreenPrintf(0, 0, "isT:%d", isT);
-	//for (int i = 0; i < numC; i++)
-	//{
-	//	Novice::ScreenPrintf(0, 50+i*30, "num[%d]:%d", i,num[i]);
-	//}
 }
 
 void card::MouseC()
