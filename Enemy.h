@@ -43,7 +43,7 @@ public:
 	/// </summary>
 	/// <param name="player"></param>
 	void BattleUpdate(Player& player);
-	int hp = 20;
+	int hp = 10;
 
 	bool isTurn= false;
 private:

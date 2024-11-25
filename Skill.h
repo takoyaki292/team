@@ -42,6 +42,8 @@ public:
 	/// ランダムになるスキル
 	/// </summary>
 	void randomNum(card& cardInstance);
+
+
 private:
 	//スキルボタンを表示するため
 	original skillBotan_

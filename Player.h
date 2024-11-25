@@ -36,9 +36,9 @@ public:
 		return instance;
 	}
 	
-	int hp = 20;
+	int hp = 10;
 	bool isAlive = false;
-	bool isTurn = true;
+	bool isTurn = false;
 
 private:
 	mapChip myMapChip;

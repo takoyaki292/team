@@ -100,10 +100,9 @@ void Skill::Mouse()
             
         }
     }
-    
-    
 }
 
+//勝利条件を変えるようにする
 void Skill::revolution(card& cardInstance)
 {
     for (int i = 0; i < cardInstance.maxSize; i++)
