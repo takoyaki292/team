@@ -72,11 +72,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			{
 				myCard.isT = false;
 			}
-			myCard.contentCard();
+			//myCard.contentCard();
 			myPlayer.BattleUpdate(myCard, myEnemy);
 			myEnemy.BattleUpdate(myPlayer);
 
-			skill_->Update();
+			skill_->Update(myCard);
+			
 			break;
 		}
 		
@@ -105,10 +106,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myEnemy.BattleDraw();
 			myCard.Draw();
 			myPlayer.Drow();
-			Novice::ScreenPrintf(0, 300, "player.hp:%d", myPlayer.hp);
+			Novice::ScreenPrintf(0, 330, "player.hp:%d", myPlayer.hp);
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
 
 			skill_->Draw();
+			for (int i = 0; i < myCard.numC; i++)
+			{
+				Novice::ScreenPrintf(0, 0 + i * 50, "num[%d]:%d", i, myCard.num[i]);
+			}
 			break;
 		}
 		

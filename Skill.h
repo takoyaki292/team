@@ -2,8 +2,9 @@
 #include "structData.h"
 #include <Novice.h>
 #include "AABB.h"
+#include "card.h"
+
 class Player;
-class card;
 class Skill
 {
 public:
@@ -16,17 +17,31 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update();
+	void Update(card& cardInstance);
 
 	/// <summary>
 	/// カードの効果
 	/// </summary>
-	void Effect();
+	void Effect(card& cardInstance);
 
 	/// <summary>
 	/// マウスとの当たり判定
 	/// </summary>
 	void Mouse();
+
+	/// <summary>
+	/// 革命のスキル
+	/// </summary>
+	/// <param name="cardInstance"></param>
+	void revolution(card& cardInstance);
+	/// <summary>
+	/// 二倍になるスキル
+	/// </summary>
+	void twice(card& cardInstance);
+	/// <summary>
+	/// ランダムになるスキル
+	/// </summary>
+	void randomNum(card& cardInstance);
 private:
 	//スキルボタンを表示するため
 	original skillBotan_
@@ -54,8 +69,11 @@ private:
 	bool skillF[skillNum] = {false,false,false};
 	bool skillH[skillNum];
 
-		float BX1[skillNum] = {};
+	float BX1[skillNum] = {};
 	float BX2[skillNum] = {};
 	float BY1[skillNum] = {};
 	float BY2[skillNum] = {};
+
+	
+	
 };

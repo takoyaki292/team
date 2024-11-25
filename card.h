@@ -9,9 +9,9 @@ public:
 	// カードを手に入れた時の関数
 	void GetCard();
 	/// <summary>
-	/// カードの効果
+	/// 革命のスキルの効果
 	/// </summary>
-	void contentCard();
+	void revolutionContent();
 	/// <summary>
 	/// 描画
 	/// </summary>
@@ -30,6 +30,7 @@ public:
 	
 	//威力
 	int attack = 0;
+	static constexpr int maxSize = numC;
 private:
 	int haveCard[numC] = {};
 	Vector3 cardPosition[numC] = {};

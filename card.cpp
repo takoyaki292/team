@@ -14,6 +14,9 @@ card::card()
 		{
 			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
 		}
+		if (haveCardF[i]) {
+			num[i] = i + 1;
+		}
 	}
 }
 
@@ -55,17 +58,19 @@ void card::GetCard()
 	//	}
 	//}
 }
-void card::contentCard()
-{
-	
-	for (int i = 0; i < numC; i++)
-	{
-		if(haveCardF[i]) {
-			num[i] = i + 1;
-		}
-	}
-	//if(isT==true)
-}
+
+
+
+//void card::revolutionContent()
+//{
+//	for (int i = 6; i >0; i--)
+//	{
+//		if (haveCardF[i]) {
+//			num[i] = i + 1;
+//		}
+//	}
+//}
+
 
 void card::Draw()
 {
@@ -97,6 +102,8 @@ void card::Draw()
 	{
 		Novice::DrawBox((int)cardPosition[6].x - w / 2, (int)cardPosition[6].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
+
+	
 }
 
 void card::MouseC()

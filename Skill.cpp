@@ -1,5 +1,10 @@
 ﻿#include "Skill.h"
-
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include <algorithm>
+#include <random>
+class card;
 Skill::Skill()
 {
     isM = false;
@@ -28,39 +33,36 @@ void Skill::Draw()
     }
 }
 
-void Skill::Update()
+void Skill::Update(card& cardInstance)
 {
     Mouse();
 
-    //スキルの効果
-    for (int i= 0; i < skillNum; i++)
-    {
-        if (skillF[i] == true)
-        {
-            Effect();
-        }
-    }
-
-
+    Effect(cardInstance);
 }
 
-void Skill::Effect()
+void Skill::Effect(card& cardInstance)
 {
     //スキルの効果
     //一個目
     if (skillF[0] == true)
     {
-        skillF[0] == false;
+        revolution(cardInstance);
+        skillF[0] = false;
+        isTrigger = false;
     }
     //二個目
     else  if (skillF[1] == true)
     {
-        skillF[1] == false;
+        twice(cardInstance);
+        skillF[1] = false;
+        isTrigger = false;
     }
     //三個目
     else  if (skillF[2] == true)
     {
-        skillF[2] == false;
+        randomNum(cardInstance);
+        isTrigger = false;
+        skillF[2] = false;
     }
 }
 
@@ -100,4 +102,47 @@ void Skill::Mouse()
     }
     
     
+}
+
+void Skill::revolution(card& cardInstance)
+{
+    for (int i = 0; i < cardInstance.maxSize; i++)
+    {   
+        if (cardInstance.haveCardF[i]) {
+            cardInstance.num[i] = cardInstance.maxSize - i;
+            //break;
+        }
+    }
+}
+
+void Skill::twice(card& cardInstance)
+{
+    for (int i = 0; i < cardInstance.maxSize; i++)
+    {
+        if (cardInstance.haveCardF[i]) {
+            cardInstance.num[i] = i * 2;
+        }
+    }
+}
+
+void Skill::randomNum(card& cardInstance)
+{
+    unsigned int currentTime = static_cast<unsigned int>(time(nullptr));
+    srand(currentTime);
+    //シャッフルの配列
+    std::vector<int> availableNums = { 1, 2, 3, 4, 5, 6, 7 };
+    std::random_device rd;
+    std::mt19937 g(rd());
+
+    // シャッフル
+    std::shuffle(availableNums.begin(), availableNums.end(), g);
+
+    int numIndex = 0;
+    for (int i = 0; i < cardInstance.maxSize; i++)
+    {
+        if (cardInstance.haveCardF[i]) {
+            cardInstance.num[i] = availableNums[numIndex];
+            numIndex++;
+        }
+    }
 }
