@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Vector3.h"
 
-struct original final // キャラ全般変数
+struct original // キャラ全般変数
 {
 	Vector3 Size;		 // サイズ
 	Vector3 Radius;		 // 半径

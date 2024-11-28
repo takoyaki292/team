@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "card.h"
+#include "Skill.h"
+#include "Jdge.h"
 
 const char kWindowTitle[] = "t";
 
@@ -22,7 +24,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Player  myPlayer;
 	Enemy   myEnemy;
 	card    myCard;
-	
+	Skill* skill_=new Skill();
+	Judge* judge = new Judge(myPlayer,myEnemy,myCard);
 	int scane = 0;
 	enum scane
 	{
@@ -53,7 +56,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case oneGame:
 			// 移動処理
 			myPlayer.Move();
-			myEnemy.MovePattern1(myPlayer);
+			//myEnemy.MovePattern1(myPlayer);
 
 			// 獲得処理(カード)
 			myCard.GetCard();
@@ -64,8 +67,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+
 			myCard.MouseC();
-			myCard.contentCard();
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			{
+				myCard.isT = false;
+			}
+			//myCard.contentCard();
+			
+			judge->Update(myPlayer,myEnemy,myCard);
+			//judge->isJudge(myPlayer,myEnemy,*skill_);
+
+			skill_->Update(myCard);
+			
 			break;
 		}
 		
@@ -91,7 +105,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
+			myEnemy.BattleDraw();
 			myCard.Draw();
+			myPlayer.Drow();
+			Novice::ScreenPrintf(0, 330, "player.hp:%d", myPlayer.hp);
+			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
+
+			skill_->Draw();
+			for (int i = 0; i < myCard.numC; i++)
+			{
+				Novice::ScreenPrintf(0, 0 + i * 50, "num[%d]:%d", i, myCard.num[i]);
+			}
+
+
+			Novice::ScreenPrintf(0, 700, "Enemy attck:%d", myEnemy.attck);
+			Novice::ScreenPrintf(0, 730, "Player attck:%d", myPlayer.attck);
 			break;
 		}
 		

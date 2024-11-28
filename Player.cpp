@@ -1,25 +1,29 @@
 ﻿#include "Player.h"
 #include "mapChip.h"
 #include "Novice.h"
-
+#include "Enemy.h"
 void Player::Drow() const
 {
-	Novice::DrawQuad
-	(
-		(int)player.LeftTop.x + (int)player.position.x, (int)player.LeftTop.y + (int)player.position.y,
-		(int)player.RightTop.x + (int)player.position.x, (int)player.RightTop.y + (int)player.position.y,
-		(int)player.LeftBottom.x + (int)player.position.x, (int)player.LeftBottom.y + (int)player.position.y,
-		(int)player.RightBottom.x + (int)player.position.x, (int)player.RightBottom.y + (int)player.position.y,
-		0, 0,
-		(int)player.Size.x, (int)player.Size.y,
-		(int)player.Texture, WHITE
-	);
+	if (isAlive==false)
+	{
+		Novice::DrawQuad
+		(
+			(int)player.LeftTop.x + (int)player.position.x, (int)player.LeftTop.y + (int)player.position.y,
+			(int)player.RightTop.x + (int)player.position.x, (int)player.RightTop.y + (int)player.position.y,
+			(int)player.LeftBottom.x + (int)player.position.x, (int)player.LeftBottom.y + (int)player.position.y,
+			(int)player.RightBottom.x + (int)player.position.x, (int)player.RightBottom.y + (int)player.position.y,
+			0, 0,
+			(int)player.Size.x, (int)player.Size.y,
+			(int)player.Texture, WHITE
+		);
+	}
+	
 }
 
 void Player::Move()
 {
-	player.speed.x = player.Size.x; // スピードのリセット
-	player.speed.y = player.Size.y; // スピードのリセット
+	//player.speed.x = player.Size.x; // スピードのリセット
+	//player.speed.y = player.Size.y; // スピードのリセット
 
 	playerTilePosX = (int)player.position.x / (int)player.Size.x;// 現在のプレイヤーの更新
 	playerTilePosY = (int)player.position.y / (int)player.Size.y;// 現在のプレイヤーの更新
@@ -94,4 +98,24 @@ void Player::Move()
 	//}
 
 
+}
+
+//void Player::BattleUpdate(card& playerCard, Enemy& enemy)
+//{
+//	if (playerCard.attack != 0 && enemy.hp> 0)
+//	{
+//		if (isTurn == true&&enemy.isTurn==false)
+//		{
+//			playerCard.attack = 0;   // 攻撃後にリセット
+//			isTurn = false;
+//		}
+//	}
+//}
+
+void Player::IsAlive()
+{
+	if (isAlive == true&&hp>=0)
+	{
+		isAlive = false;
+	}
 }
