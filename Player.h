@@ -40,8 +40,10 @@ public:
 	bool isAlive = false;
 	bool isTurn = false;
 	int attck = 0;
-private:
+	int playerTilePosX = (int)player.position.x / (int)player.Size.x; //現在のプレイヤーのX座標
+	int playerTilePosY = (int)player.position.y / (int)player.Size.y; //現在のプレイヤーのY座標
 	mapChip myMapChip;
+private:
 	original player
 	{
 		{(float)myMapChip.chipSizeX,(float)myMapChip.chipSizeY,0},// サイズ
@@ -56,6 +58,7 @@ private:
 	};
 
 
-	int playerTilePosX = (int)player.position.x / (int)player.Size.x; //現在のプレイヤーのX座標
-	int playerTilePosY = (int)player.position.y / (int)player.Size.y; //現在のプレイヤーのY座標
+	
+
+
 };

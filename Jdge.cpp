@@ -71,14 +71,10 @@ void Judge::m(Player& player_,Enemy& enemy_,card& card_)
 	player_.attck = 0;
 	enemy_.attck = 0;
 	card_.isT = false;
-	//isA = false;
-	//card_a.isT = false;
 }
 
 void Judge::Update(Player& player_,Enemy& enemy_,card& card_)
 {
-	//m();
-	
 	if (player_.isTurn == true && enemy_.isTurn == true)
 	{
 		isJudge(player_,enemy_);

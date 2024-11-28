@@ -108,6 +108,7 @@ void Skill::revolution()
     isRevolution = true;
 }
 
+
 void Skill::twice(card& cardInstance)
 {
     for (int i = 0; i < cardInstance.maxSize; i++)

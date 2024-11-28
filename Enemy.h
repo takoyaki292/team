@@ -53,6 +53,9 @@ public:
 	void BattleUpdate();
 
 	bool isR = false;
+
+	void Drow();
+	void MovePattern1(Player& myPlayer);
 private:
 	mapChip myMapChip;
 	card card_;

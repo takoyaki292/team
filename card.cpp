@@ -6,6 +6,7 @@ card::card()
 {
 	for (int i = 0; i < numC; i++)
 	{
+		
 		haveCardF[i] = true;
 	}
 	for (int i = 0; i < numC; i++)
@@ -147,3 +148,10 @@ void card::MouseC()
 }
 
 
+void card::GetCardCount()
+{
+	// 増やす数字
+	int CardUpNumber = 1;
+	CardCount = CardCount + CardUpNumber;
+	CardUpNumber--;
+}

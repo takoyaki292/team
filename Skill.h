@@ -8,7 +8,9 @@ class Player;
 class Skill
 {
 public:
-	
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	Skill();
 	/// <summary>
 	/// 描画
@@ -35,14 +37,15 @@ public:
 	/// <param name="cardInstance"></param>
 	void revolution();
 	/// <summary>
-	/// 二倍になるスキル
+	/// カードを二倍になるスキル
 	/// </summary>
 	void twice(card& cardInstance);
 	/// <summary>
-	/// ランダムになるスキル
+	/// カードの数字をランダムになるスキル
 	/// </summary>
 	void randomNum(card& cardInstance);
 
+	//革命のスキルのフラグ
 	bool isRevolution = false;
 private:
 	//スキルボタンを表示するため

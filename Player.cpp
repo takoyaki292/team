@@ -17,13 +17,12 @@ void Player::Drow() const
 			(int)player.Texture, WHITE
 		);
 	}
-	
+	Novice::DrawBox(960, 1000, hp * 20, 30, 0.0f, RED, kFillModeSolid);
 }
 
 void Player::Move()
 {
-	//player.speed.x = player.Size.x; // スピードのリセット
-	//player.speed.y = player.Size.y; // スピードのリセット
+	
 
 	playerTilePosX = (int)player.position.x / (int)player.Size.x;// 現在のプレイヤーの更新
 	playerTilePosY = (int)player.position.y / (int)player.Size.y;// 現在のプレイヤーの更新
@@ -77,26 +76,6 @@ void Player::Move()
 			MoveCount += 1;
 		}
 	}
-
-	///====================
-	// 当たり判定処理
-	///====================
-
-	//if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 12)// カード1に触れたら 
-	//{
-	//	mapChip::GetInstance().myTexture.card1Flag = true; // カードを消す
-	//}
-	//
-	//if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 13) // カード2に触れたら 
-	//{
-	//	mapChip::GetInstance().myTexture.card2Flag = true; // カードを消す
-	//}
-	//
-	//if (mapChip::GetInstance().stageMap[playerTilePosY][playerTilePosX] == 14) // カード3に触れたら 
-	//{
-	//	mapChip::GetInstance().myTexture.card3Flag = true; // カードを消す
-	//}
-
 
 }
 

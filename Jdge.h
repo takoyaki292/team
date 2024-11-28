@@ -6,13 +6,13 @@
 class Judge
 {
 public:
-	Judge(Player& player_,Enemy& enemy_,card& card_);
 	/// <summary>
-	/// ラウンドの関数
+	/// 初期化
 	/// </summary>
 	/// <param name="player_"></param>
 	/// <param name="enemy_"></param>
-	//void r(Player& player_,Enemy& enemy_);
+	/// <param name="card_"></param>
+	Judge(Player& player_,Enemy& enemy_,card& card_);
 	/// <summary>
 	/// どっちのターンが終わってる関数
 	/// </summary>
@@ -26,7 +26,7 @@ public:
 	void isJudge(Player& player_, Enemy& enemy);
 
 	/// <summary>
-	/// 戻す
+	/// ジャッジに必要な初期化
 	/// </summary>
 	void m(Player& player_, Enemy& enemy_,card& card_);
 
@@ -35,9 +35,7 @@ public:
 	/// </summary>
 	void Update(Player& player_, Enemy& enemy_, card& card_);
 private:
-	//Player& player_;
-	//Enemy& enemy_;
-	//card& card_;
+	
 	Skill skill_;
 	bool isA = false;
 };

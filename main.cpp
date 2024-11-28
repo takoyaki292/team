@@ -112,21 +112,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
 
 			skill_->Draw();
-			for (int i = 0; i < myCard.numC; i++)
-			{
-				Novice::ScreenPrintf(0, 0 + i * 50, "num[%d]:%d", i, myCard.num[i]);
-			}
-
-
+			
 			Novice::ScreenPrintf(0, 700, "Enemy attck:%d", myEnemy.attck);
 			Novice::ScreenPrintf(0, 730, "Player attck:%d", myPlayer.attck);
 			break;
 		}
 		
-
-
-		// デバックの描画
-		//Novice::ScreenPrintf(0, 100, "%f\n", myEnemy.enemy.position.y);
 
 		///
 		/// ↑描画処理ここまで
@@ -144,5 +135,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// ライブラリの終了
 	Novice::Finalize();
+
+	delete judge;
+	delete skill_;
 	return 0;
 }
