@@ -33,7 +33,7 @@ public:
 	/// 革命のスキル
 	/// </summary>
 	/// <param name="cardInstance"></param>
-	void revolution(card& cardInstance);
+	void revolution();
 	/// <summary>
 	/// 二倍になるスキル
 	/// </summary>
@@ -43,7 +43,7 @@ public:
 	/// </summary>
 	void randomNum(card& cardInstance);
 
-
+	bool isRevolution = false;
 private:
 	//スキルボタンを表示するため
 	original skillBotan_

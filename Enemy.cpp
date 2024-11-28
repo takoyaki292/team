@@ -1,6 +1,8 @@
 ﻿#include "Enemy.h"
 #include "Player.h"
 #include <time.h>
+#include <vector>
+#include <random>
 
 void Enemy::Drow() const
 {
@@ -11,6 +13,8 @@ void Enemy::Drow() const
 		(int)enemy.RightBottom.x + (int)enemy.position.x, (int)enemy.RightBottom.y + (int)enemy.position.y,
 		0, 0, (int)enemy.Size.x, (int)enemy.Size.y,
 		(int)enemy.Texture, WHITE);
+
+
 }
 
 //void Enemy::MovePattern1(Player& myPlayer)
@@ -73,19 +77,46 @@ void Enemy::BattleDraw() const
 	Novice::DrawBox(960, 50, hp * 20, 30, 0.0f, RED, kFillModeSolid);
 }
 
-void Enemy::BattleUpdate(Player& player)
+void Enemy::BattleUpdate()
 {
-	if (player.isTurn == false)
+	if (isR == true)
 	{
-		isTurn = true;
-		player.isTurn =false;
-	}
+		if (isTurn)
+		{
+			static std::mt19937 g(std::random_device{}()); // 乱数生成器を一度だけ初期化
+			std::vector<int> availableNums = { 2, 4, 6 };
 
-	if (isTurn == true)
-	{
-		player.hp -= attck;
-		isTurn = false;
-		player.isTurn = true;
+			// ランダムに1つ選択
+			std::shuffle(availableNums.begin(), availableNums.end(), g);
+
+			// 最初の値を使用
+			attck = availableNums[0];
+
+			// isTurn を false にして一度だけ実行されるようにする場合
+			//isTurn = false;
+		}
+		isR = false;
 	}
+	
+
 }
 
+
+
+//void Enemy::BattleUpdate(Player& player)
+//{
+//	if (player.isTurn == false)
+//	{
+//		isTurn = true;
+//		player.isTurn =false;
+//	}
+//
+//	if (isTurn == true)
+//	{
+//		player.hp -= attck;
+//		isTurn = false;
+//		player.isTurn = true;
+//	}
+//}
+//
+//

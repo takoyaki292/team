@@ -100,19 +100,17 @@ void Player::Move()
 
 }
 
-void Player::BattleUpdate(card& playerCard, Enemy& enemy)
-{
-	if (playerCard.attack != 0 && enemy.hp> 0)
-	{
-		if (isTurn == true&&enemy.isTurn==false)
-		{
-			
-			enemy.hp -= playerCard.attack;
-			playerCard.attack = 0;   // 攻撃後にリセット
-			isTurn = false;
-		}
-	}
-}
+//void Player::BattleUpdate(card& playerCard, Enemy& enemy)
+//{
+//	if (playerCard.attack != 0 && enemy.hp> 0)
+//	{
+//		if (isTurn == true&&enemy.isTurn==false)
+//		{
+//			playerCard.attack = 0;   // 攻撃後にリセット
+//			isTurn = false;
+//		}
+//	}
+//}
 
 void Player::IsAlive()
 {

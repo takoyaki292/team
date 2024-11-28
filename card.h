@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// 革命のスキルの効果
 	/// </summary>
-	void revolutionContent();
+	//void revolutionContent();
 	/// <summary>
 	/// 描画
 	/// </summary>
@@ -29,7 +29,7 @@ public:
 	int num[numC] = {};
 	
 	//威力
-	int attack = 0;
+	int attack ;
 	static constexpr int maxSize = numC;
 private:
 	int haveCard[numC] = {};

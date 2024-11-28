@@ -25,7 +25,7 @@ public:
 	/// </summary>
 	/// <param name="playerCard"></param>
 	/// <param name="enemy"></param>
-	void BattleUpdate(card& playerCard, Enemy& enemy);
+	//void BattleUpdate(card& playerCard, Enemy& enemy);
 
 	void IsAlive();
 
@@ -39,7 +39,7 @@ public:
 	int hp = 10;
 	bool isAlive = false;
 	bool isTurn = false;
-
+	int attck = 0;
 private:
 	mapChip myMapChip;
 	original player

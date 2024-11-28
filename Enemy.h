@@ -42,15 +42,22 @@ public:
 	/// playerに攻撃できる関数
 	/// </summary>
 	/// <param name="player"></param>
-	void BattleUpdate(Player& player);
+	//void BattleUpdate(Player& player);
 	int hp = 10;
 
+	//void Update();
 	bool isTurn= false;
+
+	int max=3;
+	int attck;
+	void BattleUpdate();
+
+	bool isR = false;
 private:
 	mapChip myMapChip;
 	card card_;
 	//フルのhp
 	const int fHp = hp;
-	//敵の攻撃力(仮)
-	int attck = 5;
+	////敵の攻撃力(仮)
+	//int attck = 5;
 };

@@ -46,7 +46,7 @@ void Skill::Effect(card& cardInstance)
     //一個目
     if (skillF[0] == true)
     {
-        revolution(cardInstance);
+        revolution();
         skillF[0] = false;
         isTrigger = false;
     }
@@ -103,15 +103,9 @@ void Skill::Mouse()
 }
 
 //勝利条件を変えるようにする
-void Skill::revolution(card& cardInstance)
+void Skill::revolution()
 {
-    for (int i = 0; i < cardInstance.maxSize; i++)
-    {   
-        if (cardInstance.haveCardF[i]) {
-            cardInstance.num[i] = cardInstance.maxSize - i;
-            //break;
-        }
-    }
+    isRevolution = true;
 }
 
 void Skill::twice(card& cardInstance)
