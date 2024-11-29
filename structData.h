@@ -20,6 +20,4 @@ struct allCard final
 
 	const int block;
 	int card[mapChipCount];
-
-
 };
