@@ -18,7 +18,7 @@ Skill::Skill()
     }
 }
 
-void Skill::Draw()
+void Skill::BattleDraw()
 {
     if (isTrigger==false)
     {
@@ -33,40 +33,40 @@ void Skill::Draw()
     }
 }
 
-void Skill::Update(card& cardInstance)
+void Skill::BattleUpdate(card& cardInstance)
 {
-    Mouse();
+    BattleMouse();
 
-    Effect(cardInstance);
+    BattleEffect(cardInstance);
 }
 
-void Skill::Effect(card& cardInstance)
+void Skill::BattleEffect(card& cardInstance)
 {
     //スキルの効果
     //一個目
     if (skillF[0] == true)
     {
-        revolution();
+        BattleRevolution();
         skillF[0] = false;
         isTrigger = false;
     }
     //二個目
     else  if (skillF[1] == true)
     {
-        twice(cardInstance);
+        BattleTwice(cardInstance);
         skillF[1] = false;
         isTrigger = false;
     }
     //三個目
     else  if (skillF[2] == true)
     {
-        randomNum(cardInstance);
+        BattleRandomNum(cardInstance);
         isTrigger = false;
         skillF[2] = false;
     }
 }
 
-void Skill::Mouse()
+void Skill::BattleMouse()
 {
     Novice::GetMousePosition(&mouseX, &mouseY);
 
@@ -103,12 +103,12 @@ void Skill::Mouse()
 }
 
 //勝利条件を変えるようにする
-void Skill::revolution()
+void Skill::BattleRevolution()
 {
     isRevolution = true;
 }
 
-void Skill::twice(card& cardInstance)
+void Skill::BattleTwice(card& cardInstance)
 {
     for (int i = 0; i < cardInstance.maxSize; i++)
     {
@@ -118,7 +118,7 @@ void Skill::twice(card& cardInstance)
     }
 }
 
-void Skill::randomNum(card& cardInstance)
+void Skill::BattleRandomNum(card& cardInstance)
 {
     unsigned int currentTime = static_cast<unsigned int>(time(nullptr));
     srand(currentTime);

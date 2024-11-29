@@ -13,35 +13,35 @@ public:
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw();
+	void BattleDraw();
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update(card& cardInstance);
+	void BattleUpdate(card& cardInstance);
 
 	/// <summary>
 	/// カードの効果
 	/// </summary>
-	void Effect(card& cardInstance);
+	void BattleEffect(card& cardInstance);
 
 	/// <summary>
 	/// マウスとの当たり判定
 	/// </summary>
-	void Mouse();
+	void BattleMouse();
 
 	/// <summary>
 	/// 革命のスキル
 	/// </summary>
 	/// <param name="cardInstance"></param>
-	void revolution();
+	void BattleRevolution();
 	/// <summary>
 	/// 二倍になるスキル
 	/// </summary>
-	void twice(card& cardInstance);
+	void BattleTwice(card& cardInstance);
 	/// <summary>
 	/// ランダムになるスキル
 	/// </summary>
-	void randomNum(card& cardInstance);
+	void BattleRandomNum(card& cardInstance);
 
 	bool isRevolution = false;
 private:

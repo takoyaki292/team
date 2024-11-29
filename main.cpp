@@ -57,9 +57,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			// 移動処理
 			myPlayer.Move();
 			//myEnemy.MovePattern1(myPlayer);
-
+			myMapChip.isDetection(myPlayer);
+			myEnemy.MovePattern1(myPlayer);
 			// 獲得処理(カード)
-			myCard.GetCard();
+			//myCard.GetCardCount();
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = twoGame;
@@ -68,17 +69,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			break;
 		case twoGame:
 
-			myCard.MouseC();
+			myCard.BattleMouseC();
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				myCard.isT = false;
 			}
 			//myCard.contentCard();
 			
-			judge->Update(myPlayer,myEnemy,myCard);
+			judge->BattleUpdate(myPlayer,myEnemy,myCard);
 			//judge->isJudge(myPlayer,myEnemy,*skill_);
 
-			skill_->Update(myCard);
+			skill_->BattleUpdate(myCard);
 			
 			break;
 		}
@@ -95,23 +96,23 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		{
 		case oneGame:
 			// マップチップの描画
-			//myMapChip.NoviceMapChip(myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
+			myMapChip.NoviceMapChip(myMapChip.mapChipSizeX, myMapChip.mapChipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
 
 			//プレイヤーの描画
 			myPlayer.Drow();
 
 			//敵の描画
-			myEnemy.Drow();
+			myEnemy.BattleDrow();
 			
 			break;
 		case twoGame:
-			myEnemy.BattleDraw();
-			myCard.Draw();
+			myEnemy.BattleDrow();
+			myCard.BattleDraw();
 			myPlayer.Drow();
 			Novice::ScreenPrintf(0, 330, "player.hp:%d", myPlayer.hp);
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy.hp);
 
-			skill_->Draw();
+			skill_->BattleDraw();
 			for (int i = 0; i < myCard.numC; i++)
 			{
 				Novice::ScreenPrintf(0, 0 + i * 50, "num[%d]:%d", i, myCard.num[i]);

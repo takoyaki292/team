@@ -6,8 +6,7 @@ class card
 public:
 	card();
 	~card();
-	// カードを手に入れた時の関数
-	void GetCard();
+	
 	/// <summary>
 	/// 革命のスキルの効果
 	/// </summary>
@@ -15,11 +14,11 @@ public:
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw();
+	void BattleDraw();
 	/// <summary>
 	/// カードとマウスの当たり判定
 	/// </summary>
-	void MouseC();
+	void BattleMouseC();
 	//カードの枚数
 	static const int numC =7;
 	bool haveCardF[numC] = {};
@@ -44,4 +43,29 @@ private:
 
 	int tW = 100;
 	int tH= 150;
+
+public:
+
+	
+	
+
+	// カードにふれたかどうかの判定フラグ
+	static const int FlagNunber = 7;// カードの枚数
+
+	bool cardFlag[FlagNunber] = {};// カード
+	bool BlockFlag = {};// 白ブロック
+
+	// スキルカードにどれだけ当たったか判定する変数
+	float CardCount = 0;
+	// 取れるカードの上限
+	float cardMaximumCount = 3;
+
+	// 他のcppで変数の状態を取得するための関数
+	static card& GetInstance()
+	{
+		static card instance;
+		return instance;
+	}
+
+	void GetCardCount();
 };

@@ -23,56 +23,9 @@ card::card()
 card::~card()
 {
 }
-void card::GetCard()
-{
-	// カード1
-	//if (mapChip::GetInstance().myTexture.card1Flag == true)
-	//{
-	//	// 仮としてスピードを足している
-	//	Player::GetInstance().player.position.x += Player::GetInstance().player.speed.x;
-	//	haveCardF[0] = true;
-	//
-	//}
-	//
-	//// カード2
-	//if (mapChip::GetInstance().myTexture.card2Flag == true)
-	//{
-	//	// 仮としてスピードを足している
-	//	Player::GetInstance().player.position.x += Player::GetInstance().player.speed.x;
-	//	haveCardF[1] = true;
-	//
-	//}
-	//
-	//// カード3
-	//if (mapChip::GetInstance().myTexture.card3Flag == true)
-	//{
-	//	// 仮としてスピードを足している
-	//	Player::GetInstance().player.position.x += Player::GetInstance().player.speed.x;
-	//	haveCardF[2] = true;
-	//}
-	//for (int i = 0; i < numC; i++)
-	//{
-	//	if (haveCardF[i] == true)
-	//	{
-	//		cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
-	//	}
-	//}
-}
 
 
-
-//void card::revolutionContent()
-//{
-//	for (int i = 6; i >0; i--)
-//	{
-//		if (haveCardF[i]) {
-//			num[i] = i + 1;
-//		}
-//	}
-//}
-
-
-void card::Draw()
+void card::BattleDraw()
 {
 	if (haveCardF[0] == true)
 	{
@@ -106,7 +59,7 @@ void card::Draw()
 	
 }
 
-void card::MouseC()
+void card::BattleMouseC()
 {
 	Novice::GetMousePosition(&mouseX, &mouseY);
 
@@ -147,3 +100,10 @@ void card::MouseC()
 }
 
 
+void card::GetCardCount()
+{
+	// 増やす数字
+	int CardUpNumber = 1;
+	CardCount = CardCount + CardUpNumber;
+	CardUpNumber--;
+}
