@@ -7,10 +7,16 @@ public:
 	card();
 	~card();
 	
-	/// <summary>
-	/// 革命のスキルの効果
-	/// </summary>
-	//void revolutionContent();
+
+
+
+
+
+	//枚数
+	static const int numC = 7;
+	bool haveCardF[numC] = {};// カード
+	bool cF[numC] = {};// カード
+
 	/// <summary>
 	/// 描画
 	/// </summary>
@@ -20,9 +26,9 @@ public:
 	/// </summary>
 	void BattleMouseC();
 	//カードの枚数
-	static const int numC =7;
-	bool haveCardF[numC] = {};
-	//マウスの左が押されているかのフラグ
+	//static const int numC =7;
+	//bool haveCardF[numC] = {};
+	///マウスの左が押されているかのフラグ
 	bool isT = false;
 	
 	int num[numC] = {};
@@ -45,16 +51,6 @@ private:
 	int tH= 150;
 
 public:
-
-	
-	
-
-	// カードにふれたかどうかの判定フラグ
-	static const int FlagNunber = 7;// カードの枚数
-
-	bool cardFlag[FlagNunber] = {};// カード
-	bool BlockFlag = {};// 白ブロック
-
 	// スキルカードにどれだけ当たったか判定する変数
 	float CardCount = 0;
 	// 取れるカードの上限
@@ -67,5 +63,11 @@ public:
 		return instance;
 	}
 
+	/// <summary>
+	/// カードのカウント
+	/// </summary>
 	void GetCardCount();
+
+
+	void BattleInitalze();
 };

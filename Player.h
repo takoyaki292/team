@@ -15,15 +15,6 @@ public:
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
 
-
-	
-	/// <summary>
-	/// Enemyに攻撃出来るようにした
-	/// </summary>
-	/// <param name="playerCard"></param>
-	/// <param name="enemy"></param>
-	//void BattleUpdate(card& playerCard, Enemy& enemy);
-
 	void IsAlive();
 
 	int hp = 10;

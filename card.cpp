@@ -4,17 +4,12 @@
 #include "Mouse.h"
 card::card()
 {
+	
+	
 	for (int i = 0; i < numC; i++)
 	{
-		haveCardF[i] = true;
-	}
-	for (int i = 0; i < numC; i++)
-	{
-		if (haveCardF[i] == true)
-		{
-			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
-		}
-		if (haveCardF[i]) {
+		
+		if (haveCardF[i]==true) {
 			num[i] = i + 1;
 		}
 	}
@@ -27,36 +22,34 @@ card::~card()
 
 void card::BattleDraw()
 {
-	if (haveCardF[0] == true)
+	if (cF[0] == true)
 	{
 		Novice::DrawBox((int)cardPosition[0].x - w / 2, (int)cardPosition[0].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
-	if (haveCardF[1] == true)
+	if (cF[1] == true)
 	{
 		Novice::DrawBox((int)cardPosition[1].x - w / 2, (int)cardPosition[1].y - h / 2, w, h, 0.0f, BLACK, kFillModeSolid);
 	}
-	if (haveCardF[2] == true)
+	if (cF[2] == true)
 	{
 		Novice::DrawBox((int)cardPosition[2].x - w / 2, (int)cardPosition[2].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
-	if (haveCardF[3] == true)
+	if (cF[3] == true)
 	{
 		Novice::DrawBox((int)cardPosition[3].x - w / 2, (int)cardPosition[3].y - h / 2, w, h, 0.0f, BLACK, kFillModeSolid);
 	}
-	if (haveCardF[4] == true)
+	if (cF[4] == true)
 	{
 		Novice::DrawBox((int)cardPosition[4].x - w / 2, (int)cardPosition[4].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
-	if (haveCardF[5] == true)
+	if (cF[5] == true)
 	{
 		Novice::DrawBox((int)cardPosition[5].x - w / 2, (int)cardPosition[5].y - h / 2, w, h, 0.0f, BLACK, kFillModeSolid);
 	}
-	if (haveCardF[6] == true)
+	if (cF[6] == true)
 	{
 		Novice::DrawBox((int)cardPosition[6].x - w / 2, (int)cardPosition[6].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
-
-	
 }
 
 void card::BattleMouseC()
@@ -106,4 +99,17 @@ void card::GetCardCount()
 	int CardUpNumber = 1;
 	CardCount = CardCount + CardUpNumber;
 	CardUpNumber--;
+
+}
+
+void card::BattleInitalze()
+{
+	for (int i = 0; i < numC; i++)
+	{
+	
+		if (cF[i] == true)
+		{
+			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
+		}
+	}
 }

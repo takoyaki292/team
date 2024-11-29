@@ -59,6 +59,10 @@ private:
 		}
 	};
 
+	//カードの個数
+	int maxCard = 7;
+	//マップチップ番号を進みための
+	int countCard = 21;
 
 	
 	

@@ -59,21 +59,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			//myEnemy.MovePattern1(myPlayer);
 			myMapChip.isDetection(myPlayer);
 			myEnemy.MovePattern1(myPlayer);
-			// 獲得処理(カード)
-			//myCard.GetCardCount();
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = twoGame;
 			}
-			
+			myCard.BattleInitalze();
 			break;
 		case twoGame:
 
 			myCard.BattleMouseC();
-			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
-			{
-				myCard.isT = false;
-			}
+			
 			//myCard.contentCard();
 			
 			judge->BattleUpdate(myPlayer,myEnemy,myCard);
