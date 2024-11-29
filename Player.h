@@ -26,7 +26,6 @@ public:
 
 	void IsAlive();
 
-	
 	int hp = 10;
 	bool isAlive = false;
 	bool isTurn = false;
@@ -45,8 +44,6 @@ private:
 		{player.Size.x, player.Size.y, 0},             // スピード
 		{Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
 	};
-
-
 public:
 	int MoveCount = 0; //移動するたびにカウントしていく変数
 
