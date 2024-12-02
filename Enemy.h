@@ -8,7 +8,7 @@ class Player;
 class Enemy
 {
 public:
-	
+	Enemy();
 
 	/// <summary>
 	/// プレイヤーの移動

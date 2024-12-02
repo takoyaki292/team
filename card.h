@@ -7,6 +7,7 @@ public:
 	card();
 	~card();
 	
+	void Battle();
 	/// <summary>
 	/// 革命のスキルの効果
 	/// </summary>
@@ -45,15 +46,11 @@ private:
 	int tH= 150;
 
 public:
-
-	
-	
-
 	// カードにふれたかどうかの判定フラグ
 	static const int FlagNunber = 7;// カードの枚数
 
 	bool cardFlag[FlagNunber] = {};// カード
-	bool BlockFlag = {};// 白ブロック
+	//bool BlockFlag = {};// 白ブロック
 
 	// スキルカードにどれだけ当たったか判定する変数
 	float CardCount = 0;

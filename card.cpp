@@ -6,15 +6,11 @@ card::card()
 {
 	for (int i = 0; i < numC; i++)
 	{
-		haveCardF[i] = true;
-	}
-	for (int i = 0; i < numC; i++)
-	{
 		if (haveCardF[i] == true)
 		{
 			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
 		}
-		if (haveCardF[i]) {
+		if (cardFlag[i]) {
 			num[i] = i + 1;
 		}
 	}
@@ -22,6 +18,22 @@ card::card()
 
 card::~card()
 {
+}
+
+void card::Battle()
+{
+	for (int i = 0; i < numC; i++)
+	{
+		if (cardFlag[i] == true)
+		{
+			haveCardF[i] = true;
+			num[i] = i + 1;
+		}
+		if (haveCardF[i] == true)
+		{
+			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
+		}
+	}
 }
 
 
@@ -55,8 +67,6 @@ void card::BattleDraw()
 	{
 		Novice::DrawBox((int)cardPosition[6].x - w / 2, (int)cardPosition[6].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
 	}
-
-	
 }
 
 void card::BattleMouseC()

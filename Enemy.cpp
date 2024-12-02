@@ -100,6 +100,11 @@ void Enemy::Drow()
 		(int)enemy.Texture, WHITE);
 }
 
+
+Enemy::Enemy()
+{
+}
+
 void Enemy::MovePattern1(Player& myPlayer)
 {
 	srand((unsigned int)time(NULL)); // 乱数の種を初期化
