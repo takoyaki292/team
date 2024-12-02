@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "card.h"
+#include "Skill.h"
+#include "Jdge.h"
 
 const char kWindowTitle[] = "t";
 
@@ -18,11 +20,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Novice::Initialize(kWindowTitle,(int)kWindowWidth, (int)kWindowHeight);
 	//Novice::SetWindowMode(kFullscreen);
 	// インスタンス生成
-	mapChip myMapChip;
-	Player  myPlayer;
-	Enemy   myEnemy;
+	mapChip* myMapChip=new mapChip();
+	Player*  myPlayer=new Player();
+	Enemy*   myEnemy=new Enemy();
 	card    myCard;
-	
+	Skill* skill_=new Skill();
+	Judge* judge = new Judge(*myPlayer,*myEnemy,myCard);
 	int scane = 0;
 	enum scane
 	{
@@ -52,20 +55,33 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		{
 		case oneGame:
 			// 移動処理
-			myPlayer.Move();
-			myEnemy.MovePattern1(myPlayer);
-
+			myPlayer->Move();
+			//myEnemy.MovePattern1(myPlayer);
+			myMapChip->isDetection(*myPlayer,myCard);
+			myEnemy->MovePattern1(*myPlayer);
 			// 獲得処理(カード)
-			myCard.GetCard();
+			//myCard.GetCardCount();
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = twoGame;
+				myCard.Battle();
 			}
 			
 			break;
 		case twoGame:
-			myCard.MouseC();
-			myCard.contentCard();
+
+			myCard.BattleMouseC();
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			{
+				myCard.isT = false;
+			}
+			//myCard.contentCard();
+			
+			judge->BattleUpdate(*myPlayer,*myEnemy,myCard);
+			//judge->isJudge(myPlayer,myEnemy,*skill_);
+
+			skill_->BattleUpdate(myCard);
+			
 			break;
 		}
 		
@@ -81,17 +97,34 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		{
 		case oneGame:
 			// マップチップの描画
-			//myMapChip.NoviceMapChip(myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.chipSizeX, myMapChip.chipSizeY, myMapChip.stageMap);
+			myMapChip->NoviceMapChip(myMapChip->mapChipSizeX, myMapChip->mapChipSizeY, myMapChip->chipSizeX, myMapChip->chipSizeY, myMapChip->stageMap,myCard);
 
 			//プレイヤーの描画
-			myPlayer.Drow();
+			myPlayer->Drow();
 
 			//敵の描画
-			myEnemy.Drow();
-			
+			myEnemy->BattleDrow();
+			for (int i = 0; i < myCard.numC; i++)
+			{
+				Novice::ScreenPrintf(0, 0 + i * 50, "cardFlag[%d]:%d", i, myCard.cardFlag[i]);
+			}
 			break;
 		case twoGame:
-			myCard.Draw();
+			myEnemy->BattleDrow();
+			myCard.BattleDraw();
+			myPlayer->Drow();
+			Novice::ScreenPrintf(0, 330, "player.hp:%d", myPlayer->hp);
+			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy->hp);
+
+			skill_->BattleDraw();
+			for (int i = 0; i < myCard.numC; i++)
+			{
+				Novice::ScreenPrintf(0, 0 + i * 50, "num[%d]:%d", i, myCard.num[i]);
+			}
+
+
+			Novice::ScreenPrintf(0, 700, "Enemy attck:%d", myEnemy->attck);
+			Novice::ScreenPrintf(0, 730, "Player attck:%d", myPlayer->attck);
 			break;
 		}
 		
@@ -116,5 +149,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// ライブラリの終了
 	Novice::Finalize();
+	
+	delete myEnemy;
+	delete myMapChip;
+	delete myPlayer;
 	return 0;
 }

@@ -35,6 +35,12 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Jdge.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -129,5 +135,7 @@
     <ClInclude Include="AABB.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="Jdge.h" />
   </ItemGroup>
 </Project>
