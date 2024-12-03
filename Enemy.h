@@ -29,10 +29,12 @@ public:
 	/// <summary>
 	/// バトルの描画
 	/// </summary>
-	void BattleDrow() const;
+	void BattleDrow() ;
 	
+
 	bool isTurn= false;
 
+	bool isCard = false;
 	int max=3;
 	int attck;
 
@@ -43,9 +45,7 @@ private:
 	card card_;
 	//フルのhp
 	const int fHp = hp;
-	////敵の攻撃力(仮)
-	//int attck = 5;
-
+	////マップシーンの設定
 	original enemy{
 		{120, 120, 0}, // サイズ
 		{enemy.Size.x / 2, enemy.Size.y / 2,0},      // 半径
@@ -58,6 +58,7 @@ private:
 		{Novice::LoadTexture("./Resources/images/player/enemy01.png")}
 	};
 
+	//バトルシーンの設定
 	original BattlEnemy{
 		{800,100, 0}, // サイズ
 		{BattlEnemy.Size.x / 2, BattlEnemy.Size.y / 2, 0}, // 半径
@@ -70,4 +71,5 @@ private:
 		{Novice::LoadTexture("./Resources/images/player/enemy01.png")}
 	};
 	
+	int attckNum=0;
 };

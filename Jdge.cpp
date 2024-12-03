@@ -34,24 +34,19 @@ void Judge::BattleIsJudge(Player& player_,Enemy& enemy_)
 {
 	if (player_.attck != 0 && enemy_.attck != 0)
 	{
+		//スキルを使わない場合
 		if (skill_.isRevolution == false)
 		{
 			if (player_.attck > enemy_.attck)
 			{
 				enemy_.hp -= player_.attck;
-				//m(player_,enemy_);
 			}
 			else if (enemy_.attck > player_.attck)
 			{
 				player_.hp -= enemy_.attck;
-				//m(player_, enemy_);
 			}
-			//else if(enemy_.attck==player_.attck)
-			//{
-			//	 
-			//}
-
 		}
+		//スキルを使った場合
 		else if (skill_.isRevolution == true)
 		{
 			if (player_.attck > enemy_.attck)
@@ -62,7 +57,6 @@ void Judge::BattleIsJudge(Player& player_,Enemy& enemy_)
 			else if (enemy_.attck > player_.attck)
 			{
 				enemy_.hp -= player_.attck;
-				//m(player_, enemy_);
 			}
 		}
 	}
@@ -75,21 +69,24 @@ void Judge::BattleReset(Player& player_,Enemy& enemy_,card& card_)
 	player_.attck = 0;
 	enemy_.attck = 0;
 	card_.isT = false;
-	//isA = false;
-	//card_a.isT = false;
+
+	//enemy_.isCard = false;
+	//player_.isCard = false;
 }
 
 void Judge::BattleUpdate(Player& player_,Enemy& enemy_,card& card_)
 {
-	//m();
-	
 	if (player_.isTurn == true && enemy_.isTurn == true)
 	{
+		enemy_.isCard = true;
+		player_.isCard = true;
 		BattleIsJudge(player_,enemy_);
 		BattleReset(player_,enemy_,card_);
 	}
 	else
 	{
 		BattleTrun(player_, enemy_, card_);
+		enemy_.isCard =false;
+		player_.isCard = false;
 	}
 }

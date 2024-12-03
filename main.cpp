@@ -104,15 +104,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 			//敵の描画
 			myEnemy->BattleDrow();
-			for (int i = 0; i < myCard.numC; i++)
-			{
-				Novice::ScreenPrintf(0, 0 + i * 50, "cardFlag[%d]:%d", i, myCard.cardFlag[i]);
-			}
 			break;
 		case twoGame:
 			myEnemy->BattleDrow();
 			myCard.BattleDraw();
-			myPlayer->Drow();
+			//myPlayer->Drow();
 			Novice::ScreenPrintf(0, 330, "player.hp:%d", myPlayer->hp);
 			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy->hp);
 

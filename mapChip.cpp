@@ -22,6 +22,12 @@ void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSize
 				// 10の場合はブロックを作らない
 			}
 
+			//// ボス
+			//if (stageMap_[y][x] == 12)
+			//{
+			//	Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, myTexture., 2.0f, 2.0f, 0.0f, WHITE); // マップチップの生成
+			//}
+			//
 			// 背景ブロック
 			if (stageMap_[y][x] == 11)
 			{
@@ -81,5 +87,5 @@ void mapChip::isDetection(Player& player_, card& card_)
 
 
 	// デバック
-	Novice::ScreenPrintf(0, 100, "%f\n", card::GetInstance().CardCount);
+	///Novice::ScreenPrintf(0, 100, "%f\n", card::GetInstance().CardCount);
 }

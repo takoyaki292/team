@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include "Vector3.h"
 #include "Mouse.h"
+#include "Novice.h"
+
+
 class card
 {
 public:
@@ -31,6 +34,16 @@ public:
 	//威力
 	int attack ;
 	static constexpr int maxSize = numC;
+
+	//カードの画像の変数
+	int cardT[numC] = {
+	Novice::LoadTexture("./Resources/images/card/1.png") ,
+	Novice::LoadTexture("./Resources/images/card/2.png") ,
+	Novice::LoadTexture("./Resources/images/card/3.png") ,
+	Novice::LoadTexture("./Resources/images/card/4.png") ,
+	Novice::LoadTexture("./Resources/images/card/5.png") ,
+	Novice::LoadTexture("./Resources/images/card/6.png") ,
+	Novice::LoadTexture("./Resources/images/card/7.png") };
 private:
 	int haveCard[numC] = {};
 	Vector3 cardPosition[numC] = {};
@@ -44,7 +57,6 @@ private:
 
 	int tW = 100;
 	int tH= 150;
-
 public:
 	// カードにふれたかどうかの判定フラグ
 	static const int FlagNunber = 7;// カードの枚数
@@ -65,4 +77,6 @@ public:
 	}
 
 	void GetCardCount();
+
+	void GetCardNumDraw();
 };

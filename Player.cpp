@@ -2,6 +2,7 @@
 #include "mapChip.h"
 #include "Novice.h"
 #include "Enemy.h"
+
 void Player::Drow() const
 {
 	if (isAlive==false)
@@ -16,6 +17,11 @@ void Player::Drow() const
 			(int)player.Size.x, (int)player.Size.y,
 			(int)player.Texture, WHITE
 		);
+	}
+	//選んだカードを表示させる
+	if (isCard)
+	{
+		Novice::DrawSprite(0, 0, card_->cardT[card_->attack], 0.4f, 0.4f, 0.0f, WHITE);
 	}
 	
 }
@@ -43,17 +49,6 @@ void Player::Move()
 	{
 		if (player.position.x + player.Size.x < 14 * player.Size.x) //範囲外に出ないようにする処理
 		{
-			//easingFlag = true;
-			//if(easingFlag == true)
-			//{ 
-			//	frameX++;
-			//}
-			//
-			//if (frameX == endFrameX)
-			//{
-			//	easingFlag = false;
-			//}
-			//MoveCount += 1;
 			player.position.x += player.speed.x;
 			player.speed.x = 0;
 		}
@@ -91,6 +86,10 @@ void Player::Move()
 
 }
 
+
+Player::Player()
+{
+}
 
 void Player::IsAlive()
 {

@@ -12,7 +12,7 @@ card::card()
 		}
 		if (cardFlag[i]) {
 			num[i] = i + 1;
-		}
+		}	
 	}
 }
 
@@ -39,34 +39,16 @@ void card::Battle()
 
 void card::BattleDraw()
 {
-	if (haveCardF[0] == true)
+
+	for (int i = 0; i < numC; i++)
 	{
-		Novice::DrawBox((int)cardPosition[0].x - w / 2, (int)cardPosition[0].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
+		if (haveCardF[i] == true)
+		{
+			Novice::DrawSprite((int)cardPosition[i].x - w / 2, (int)cardPosition[i].y - h / 2, cardT[i], 0.4f, 0.4f, 0.0f, WHITE);
+		}
 	}
-	if (haveCardF[1] == true)
-	{
-		Novice::DrawBox((int)cardPosition[1].x - w / 2, (int)cardPosition[1].y - h / 2, w, h, 0.0f, BLACK, kFillModeSolid);
-	}
-	if (haveCardF[2] == true)
-	{
-		Novice::DrawBox((int)cardPosition[2].x - w / 2, (int)cardPosition[2].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
-	}
-	if (haveCardF[3] == true)
-	{
-		Novice::DrawBox((int)cardPosition[3].x - w / 2, (int)cardPosition[3].y - h / 2, w, h, 0.0f, BLACK, kFillModeSolid);
-	}
-	if (haveCardF[4] == true)
-	{
-		Novice::DrawBox((int)cardPosition[4].x - w / 2, (int)cardPosition[4].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
-	}
-	if (haveCardF[5] == true)
-	{
-		Novice::DrawBox((int)cardPosition[5].x - w / 2, (int)cardPosition[5].y - h / 2, w, h, 0.0f, BLACK, kFillModeSolid);
-	}
-	if (haveCardF[6] == true)
-	{
-		Novice::DrawBox((int)cardPosition[6].x - w / 2, (int)cardPosition[6].y - h / 2, w, h, 0.0f, RED, kFillModeSolid);
-	}
+	
+	
 }
 
 void card::BattleMouseC()
@@ -116,4 +98,13 @@ void card::GetCardCount()
 	int CardUpNumber = 1;
 	CardCount = CardCount + CardUpNumber;
 	CardUpNumber--;
+}
+
+void card::GetCardNumDraw()
+{
+	if (CardCount >= 2)
+	{
+		Novice::DrawBox(1000, 0, w, h, 0.0f, WHITE, kFillModeSolid);
+
+	}
 }

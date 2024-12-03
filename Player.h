@@ -7,10 +7,11 @@
 //#include "Enemy.h"
 
 class Enemy;
+class card;
 class Player
 {
 public:
-
+	Player();
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
@@ -30,6 +31,8 @@ public:
 	bool isAlive = false;
 	bool isTurn = false;
 	int attck = 0;
+
+	bool isCard = false;
 private:
 	//mapChip myMapChip;
 	original player
@@ -44,6 +47,7 @@ private:
 		{player.Size.x, player.Size.y, 0},             // スピード
 		{Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
 	};
+
 public:
 	int MoveCount = 0; //移動するたびにカウントしていく変数
 
@@ -66,11 +70,12 @@ public:
 	float endFrameX = 100.0f;
 
 	
+	card* card_;
 	//void isC();
 	// 他のcppで変数の状態を取得するための関数
-	static Player& GetInstance()
-	{
-		static Player instance;
-		return instance;
-	}
+	//static Player& GetInstance()
+	//{
+	//	static Player instance;
+	//	return instance;
+	//}
 };
