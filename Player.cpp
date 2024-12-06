@@ -18,12 +18,6 @@ void Player::Drow() const
 			(int)player.Texture, WHITE
 		);
 	}
-	//選んだカードを表示させる
-	if (isCard)
-	{
-		Novice::DrawSprite(0, 0, card_->cardT[card_->attack], 0.4f, 0.4f, 0.0f, WHITE);
-	}
-	
 }
 
 void Player::Move()
@@ -91,6 +85,13 @@ Player::Player()
 {
 }
 
+void Player::BattleDraw()
+{
+	Novice::DrawSprite((int)battePlayer.position.x, (int)battePlayer.position.y, (int)player.Texture, 1.5, 1.5, 0.0f, WHITE);
+	Novice::DrawBox((int)hpPosition.x, (int)hpPosition.y, hp * 50, 30, 0.0f, RED, kFillModeSolid);
+	
+}
+
 void Player::IsAlive()
 {
 	if (isAlive == true&&hp>=0)
@@ -98,3 +99,5 @@ void Player::IsAlive()
 		isAlive = false;
 	}
 }
+
+

@@ -42,6 +42,8 @@ public:
 	//	static mapChip instance;
 	//	return instance;
 	//}
+
+	bool bossEnemyFlag = false;
 private:
 
 	allCard myTexture
@@ -49,6 +51,10 @@ private:
 		// 画像の初期化
 		{
 			Novice::LoadTexture("./Resources/images/mapChip/block01.png")// ブロック
+		},
+
+		{
+			Novice::LoadTexture("./Resources/images/mapChip/bosMapChip.png")// ボス
 		},
 		
 		{
@@ -65,12 +71,13 @@ private:
 	const int cardNumber = 7;// カードの枚数
 
 	bool isCard[7] = {};
+
+	int mapHaveCard={ Novice::LoadTexture("./Resources/images/card/mapCard.png") };
 	//マップ上の敵の画像
 	//const static int numEnemy = 4;
 	//int mpaEnemy[numEnemy] = {
 	//
 	//};
 	
-
 	
 };

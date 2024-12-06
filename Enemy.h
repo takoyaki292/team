@@ -40,6 +40,8 @@ public:
 
 	bool isR = false;
 	int hp = 10;
+
+	bool isAliveBoss = true;
 private:
 	mapChip myMapChip;
 	card card_;
@@ -62,7 +64,7 @@ private:
 	original BattlEnemy{
 		{800,100, 0}, // サイズ
 		{BattlEnemy.Size.x / 2, BattlEnemy.Size.y / 2, 0}, // 半径
-		{1360, 0}, //  ポジション
+		{90, 90}, //  ポジション
 		{0 - BattlEnemy.Radius.x, 0 - BattlEnemy.Radius.y, 0}, //  左上
 		{0 + BattlEnemy.Radius.x, 0 - BattlEnemy.Radius.y, 0}, //  右上
 		{0 - BattlEnemy.Radius.x, 0 + BattlEnemy.Radius.y, 0}, //  左下
@@ -72,4 +74,8 @@ private:
 	};
 	
 	int attckNum=0;
+
+	int bossT = Novice::LoadTexture("./Resources/images/enemy/boss.png");
+	Vector2 hpPosition = { 700,100 };
+	Vector2 cardPosition = { 850,400 };
 };

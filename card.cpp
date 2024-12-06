@@ -20,35 +20,39 @@ card::~card()
 {
 }
 
+
 void card::Battle()
 {
+	int validCardCount = 0; // 有効なカードの数を追跡
 	for (int i = 0; i < numC; i++)
 	{
 		if (cardFlag[i] == true)
 		{
 			haveCardF[i] = true;
-			num[i] = i + 1;
+			num[i] = i + 1; 
+			attckA[i] = num[i];
+			cardPosition[i] = Vector3(600.f + validCardCount * 70.f, 800.f, 0); 
+			validCardCount++; // 有効なカード数を増やす
 		}
-		if (haveCardF[i] == true)
+		else
 		{
-			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
+			haveCardF[i] = false;
 		}
 	}
 }
 
-
 void card::BattleDraw()
 {
 
-	for (int i = 0; i < numC; i++)
+	for (int i = 0; i < maxSize; i++)
 	{
-		if (haveCardF[i] == true)
+		// attckA[i] に応じてカード画像を変更
+		int cardIndex = attckA[i] - 1;  // attckAは1から7の範囲と仮定
+		if (cardIndex >= 0 && cardIndex < 8)
 		{
-			Novice::DrawSprite((int)cardPosition[i].x - w / 2, (int)cardPosition[i].y - h / 2, cardT[i], 0.4f, 0.4f, 0.0f, WHITE);
+			Novice::DrawSprite((int)cardPosition[i].x - w / 2, (int)cardPosition[i].y - h / 2, cardT[cardIndex], 0.4f, 0.4f, 0.0f, WHITE);
 		}
 	}
-	
-	
 }
 
 void card::BattleMouseC()
@@ -75,8 +79,8 @@ void card::BattleMouseC()
 			{
 				isT = true;
 				haveCardF[i] = false;
-				attack = num[i];
-				num[i] = 0;
+				attack = attckA[i];
+				attckA[i] = 0;
 			}
 		}
 		else

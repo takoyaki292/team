@@ -6,18 +6,17 @@
 
 void Enemy::BattleDrow() 
 {
-	Novice::DrawQuad(
-		(int)enemy.LeftTop.x + (int)enemy.position.x, (int)enemy.LeftTop.y + (int)enemy.position.y,
-		(int)enemy.RightTop.x + (int)enemy.position.x, (int)enemy.RightTop.y + (int)enemy.position.y,
-		(int)enemy.LeftBottom.x + (int)enemy.position.x, (int)enemy.LeftBottom.y + (int)enemy.position.y,
-		(int)enemy.RightBottom.x + (int)enemy.position.x, (int)enemy.RightBottom.y + (int)enemy.position.y,
-		0, 0, (int)enemy.Size.x, (int)enemy.Size.y,
-		(int)enemy.Texture, WHITE);
-
-	if (isTurn)
+	if (isAliveBoss)
 	{
-		Novice::DrawSprite(100, 0, card_.cardT[attckNum], 0.4f, 0.4f, 0.0f, WHITE);
+		Novice::DrawSprite((int)BattlEnemy.position.x, (int)BattlEnemy.position.y, bossT, 0.2f, 0.2f, 0.0f, WHITE);
+		if (isTurn)
+		{
+			Novice::DrawSprite((int)cardPosition.x, (int)cardPosition.y, card_.cardT[attckNum], 0.4f, 0.4f, 0.0f, WHITE);
+		}
+
+		Novice::DrawBox((int)hpPosition.x, (int)hpPosition.y, hp * 50, 30, 0.0f, RED, kFillModeSolid);
 	}
+	
 
 }
 void Enemy::BattleUpdate()
@@ -39,7 +38,10 @@ void Enemy::BattleUpdate()
 		}
 		isR = false;
 	}
-	
+	if (hp <= 0 || hp == 0)
+	{
+		isAliveBoss = false;
+	}
 
 }
 

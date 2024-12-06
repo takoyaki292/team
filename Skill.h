@@ -35,7 +35,7 @@ public:
 	/// <param name="cardInstance"></param>
 	void BattleRevolution();
 	/// <summary>
-	/// 二倍になるスキル
+	/// ＋2になるスキル
 	/// </summary>
 	void BattleTwice(card& cardInstance);
 	/// <summary>
@@ -59,6 +59,18 @@ private:
 		{}//Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
 	};
 
+	original skillBotanT_
+	{
+		{100,100,0},// サイズ
+		{skillBotan_.Size.x, skillBotan_.Size.y,0},      // 半径
+		{1750, 250, 0}, // ポジション
+		{skillBotan_.position.x - skillBotan_.Radius.x,  skillBotan_.position.y - skillBotan_.Radius.y, 0}, // 左上
+		{skillBotan_.position.x + skillBotan_.Radius.x, skillBotan_.position.y - skillBotan_.Radius.y, 0}, // 右上
+		{skillBotan_.position.x - skillBotan_.Radius.x, skillBotan_.position.y + skillBotan_.Radius.y, 0}, // 左下
+		{skillBotan_.position.x + skillBotan_.Radius.x, skillBotan_.position.y + skillBotan_.Radius.y, 0}, // 右下
+		{skillBotan_.Size.x, skillBotan_.Size.y, 0},             // スピード
+		{}//Novice::LoadTexture("./Resources/images/player/ghost.png")} // テクスチャ
+	};
 	int mouseX;
 	int mouseY;
 
@@ -77,5 +89,13 @@ private:
 	float BY2[skillNum] = {};
 
 	
+	int skillT[3] = {
+		Novice::LoadTexture("./Resources/images/skill/skill_reversal.png"),
+		Novice::LoadTexture("./Resources/images/skill/skill_+2.png"),
+		//Novice::LoadTexture("./Resources/images/skill/skill_+2.png"),
+	};
 	
+	int skillTeX = {
+		Novice::LoadTexture("./Resources/images/skill/skill.png")
+	};
 };

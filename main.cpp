@@ -32,6 +32,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		oneGame,
 		twoGame
 	};
+	Vector2 backGroundPosition = {0.f,0.f};
+	int twoGameSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
 	//int num = 0;
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
@@ -61,31 +63,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myEnemy->MovePattern1(*myPlayer);
 			// 獲得処理(カード)
 			//myCard.GetCardCount();
-			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
+			if (myMapChip->bossEnemyFlag==true)
 			{
 				scane = twoGame;
 				myCard.Battle();
+				myMapChip->bossEnemyFlag = false;
 			}
 			
 			break;
 		case twoGame:
-
+			myPlayer->IsAlive();
 			myCard.BattleMouseC();
-			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
-			{
-				myCard.isT = false;
-			}
-			//myCard.contentCard();
-			
-			judge->BattleUpdate(*myPlayer,*myEnemy,myCard);
-			//judge->isJudge(myPlayer,myEnemy,*skill_);
-
 			skill_->BattleUpdate(myCard);
-			
+			judge->BattleUpdate(*myPlayer,*myEnemy,myCard,*skill_);
 			break;
 		}
-		
-
 		///
 		/// ↑更新処理ここまで
 		///
@@ -103,31 +95,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myPlayer->Drow();
 
 			//敵の描画
-			myEnemy->BattleDrow();
+			myEnemy->Drow();
 			break;
 		case twoGame:
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
 			myEnemy->BattleDrow();
 			myCard.BattleDraw();
-			//myPlayer->Drow();
-			Novice::ScreenPrintf(0, 330, "player.hp:%d", myPlayer->hp);
-			Novice::ScreenPrintf(0, 350, "enemy.hp:%d", myEnemy->hp);
-
+			myPlayer->BattleDraw();
 			skill_->BattleDraw();
-			for (int i = 0; i < myCard.numC; i++)
-			{
-				Novice::ScreenPrintf(0, 0 + i * 50, "num[%d]:%d", i, myCard.num[i]);
-			}
-
-
-			Novice::ScreenPrintf(0, 700, "Enemy attck:%d", myEnemy->attck);
-			Novice::ScreenPrintf(0, 730, "Player attck:%d", myPlayer->attck);
 			break;
 		}
 		
-
-
-		// デバックの描画
-		//Novice::ScreenPrintf(0, 100, "%f\n", myEnemy.enemy.position.y);
 
 		///
 		/// ↑描画処理ここまで

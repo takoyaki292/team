@@ -33,20 +33,33 @@ public:
 	
 	//威力
 	int attack ;
-	static constexpr int maxSize = numC;
+	static constexpr int maxSize = numC+1;
 
 	//カードの画像の変数
-	int cardT[numC] = {
+	int cardT[maxSize] = {
 	Novice::LoadTexture("./Resources/images/card/1.png") ,
 	Novice::LoadTexture("./Resources/images/card/2.png") ,
 	Novice::LoadTexture("./Resources/images/card/3.png") ,
 	Novice::LoadTexture("./Resources/images/card/4.png") ,
 	Novice::LoadTexture("./Resources/images/card/5.png") ,
 	Novice::LoadTexture("./Resources/images/card/6.png") ,
-	Novice::LoadTexture("./Resources/images/card/7.png") };
+	Novice::LoadTexture("./Resources/images/card/7.png"),
+	Novice::LoadTexture("./Resources/images/card/8.png"),
+	
+	};
+
+
+
+
+
+	//bool isAffectedBySkill[12];
+	////カードの中身の攻撃力
+	int attckA[maxSize] = {};
+
+	
 private:
 	int haveCard[numC] = {};
-	Vector3 cardPosition[numC] = {};
+	Vector3 cardPosition[maxSize] = {};
 	int w = 50;
 	int h = 100;
 

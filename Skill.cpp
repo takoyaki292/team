@@ -22,13 +22,16 @@ void Skill::BattleDraw()
 {
     if (isTrigger==false)
     {
-	    Novice::DrawEllipse((int)skillBotan_.position.x, (int)skillBotan_.position.y, (int)skillBotan_.Radius.x, (int)skillBotan_.Radius.y, 0.0f, BLACK, kFillModeSolid);
+        
+	    //Novice::DrawEllipse((int)skillBotan_.position.x, (int)skillBotan_.position.y, (int)skillBotan_.Radius.x, (int)skillBotan_.Radius.y, 0.0f, BLACK, kFillModeSolid);
+	    Novice::DrawSprite((int)skillBotanT_.position.x - (int)skillBotanT_.Radius.x / 2, (int)skillBotanT_.position.y - (int)skillBotanT_.Radius.y / 2, skillTeX,1.9f,1.9f,0.0f,WHITE);
     }
     else if(isTrigger==true)
     {
         for (int i = 0; i < skillNum; i++)
         {
-            Novice::DrawEllipse((int)skillPosition[i].x, (int)skillPosition[i].y, (int)r[i].x, (int)r[i].y, 0.0f, BLACK, kFillModeSolid);
+            //Novice::DrawEllipse((int)skillPosition[i].x, (int)skillPosition[i].y, (int)r[i].x, (int)r[i].y, 0.0f, BLACK, kFillModeSolid);
+            Novice::DrawSprite((int)skillPosition[i].x - (int)r[i].x / 2, (int)skillPosition[i].y - (int)r[i].y / 2, skillT[i], 1, 1, 0.0f, WHITE);
          }
     }
 }
@@ -51,19 +54,19 @@ void Skill::BattleEffect(card& cardInstance)
         isTrigger = false;
     }
     //二個目
-    else  if (skillF[1] == true)
-    {
+    if (skillF[1] == true)
+    {   
         BattleTwice(cardInstance);
         skillF[1] = false;
         isTrigger = false;
     }
     //三個目
-    else  if (skillF[2] == true)
-    {
-        BattleRandomNum(cardInstance);
-        isTrigger = false;
-        skillF[2] = false;
-    }
+    //if (skillF[2] == true)
+    //{
+    //    //BattleRandomNum(cardInstance);
+    //    isTrigger = false;
+    //    skillF[2] = false;
+    //}
 }
 
 void Skill::BattleMouse()
@@ -94,7 +97,6 @@ void Skill::BattleMouse()
                 if (Novice::IsTriggerMouse(0))
                 {
                     skillF[i] = true;
-                    
                 }
             }
             
@@ -113,7 +115,7 @@ void Skill::BattleTwice(card& cardInstance)
     for (int i = 0; i < cardInstance.maxSize; i++)
     {
         if (cardInstance.haveCardF[i]) {
-            cardInstance.num[i] = i * 2;
+            cardInstance.attckA[i] = i + 3;
         }
     }
 }
@@ -122,20 +124,32 @@ void Skill::BattleRandomNum(card& cardInstance)
 {
     unsigned int currentTime = static_cast<unsigned int>(time(nullptr));
     srand(currentTime);
-    //シャッフルの配列
+
+    // シャッフル用の配列
     std::vector<int> availableNums = { 1, 2, 3, 4, 5, 6, 7 };
     std::random_device rd;
     std::mt19937 g(rd());
 
-    // シャッフル
+    // 配列のシャッフル
     std::shuffle(availableNums.begin(), availableNums.end(), g);
 
-    int numIndex = 0;
+    int numIndex = 0; // シャッフルされた数値のインデックス
+
     for (int i = 0; i < cardInstance.maxSize; i++)
     {
-        if (cardInstance.haveCardF[i]) {
-            cardInstance.num[i] = availableNums[numIndex];
-            numIndex++;
+        if (cardInstance.haveCardF[i]) // 有効なカードであるか確認
+        {
+            if (numIndex < availableNums.size()) // 範囲外アクセスを防止
+            {
+                cardInstance.attckA[i] = availableNums[numIndex];
+                numIndex++;
+            }
+            else
+            {
+                // 追加の安全対策: numIndexがシャッフル配列のサイズを超えた場合
+                break;
+            }
         }
     }
 }
+

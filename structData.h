@@ -19,5 +19,7 @@ struct allCard final
 	static constexpr int mapChipCount = 7; // 配列サイズの定義
 
 	const int block;
+	int enemy;
+
 	int card[mapChipCount];
 };

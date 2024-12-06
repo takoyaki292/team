@@ -9,8 +9,6 @@ mapChip::mapChip()
 
 void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16], card& card_)
 {
-	//Player myPlayer_;
-
 	// マップチップの生成
 	for (int y = 0; y < mapSizeY; y++)
 	{
@@ -23,11 +21,14 @@ void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSize
 			}
 
 			//// ボス
-			//if (stageMap_[y][x] == 12)
-			//{
-			//	Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, myTexture., 2.0f, 2.0f, 0.0f, WHITE); // マップチップの生成
-			//}
-			//
+			if (stageMap_[y][x] == 12)
+			{
+				if (bossEnemyFlag==false)
+				{
+					Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, myTexture.enemy, 2.0f, 2.0f, 0.0f, WHITE); // マップチップの生成
+				}
+			}
+			
 			// 背景ブロック
 			if (stageMap_[y][x] == 11)
 			{
@@ -47,15 +48,34 @@ void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSize
 						Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, (int)myTexture.block, 1.0f, 1.0f, 0.0f, WHITE);
 					}
 				}
-			}
+			}	
+		}
+	}
 
-			
+	
+	// カードを詰めて表示
+	int drawIndex = 0; // 詰めて描画するためのインデックス
+	for (int i = 0; i < cardNumber; i++)
+	{
+		if (card_.cardFlag[i] == true)
+		{
+			Novice::DrawSprite(1500 + drawIndex * 80, 0, mapHaveCard, 1.0f, 1.0f, 0.0f, WHITE);
+			drawIndex++; // 次の位置に詰めて描画する
 		}
 	}
 }
 
 void mapChip::isDetection(Player& player_, card& card_) 
 {
+	///====================
+	// プレイヤーと敵の当たり判定処理
+	///====================
+
+	if (stageMap[player_.playerTilePosY][player_.playerTilePosX] == 12// カード1に触れたら 
+		|| stageMap[player_.playerTilePosY][player_.playerTilePosX] == 13)//
+	{
+		bossEnemyFlag = true;
+	}
 
 	///====================
 	// プレイヤーとの当たり判定処理

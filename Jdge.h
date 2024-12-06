@@ -18,19 +18,19 @@ public:
 	/// どっちが大きいかの関数
 	/// </summary>
 	/// <param name="enemy_"></param>
-	void BattleIsJudge(Player& player_, Enemy& enemy);
+	void BattleIsJudge(Player& player_, Enemy& enemy, Skill& skill_);
 
 	/// <summary>
 	/// 戻す
 	/// </summary>
-	void BattleReset(Player& player_, Enemy& enemy_,card& card_);
+	void BattleReset(Player& player_, Enemy& enemy_,card& card_, Skill& skill_);
 
 	/// <summary>
 	/// 更新(ラウンド)
 	/// </summary>
-	void BattleUpdate(Player& player_, Enemy& enemy_, card& card_);
+	void BattleUpdate(Player& player_, Enemy& enemy_, card& card_, Skill& skill_);
 private:
-	Skill skill_;
+	//Skill skill_;
 	bool isA = false;
 
 	
