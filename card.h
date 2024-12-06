@@ -47,11 +47,6 @@ public:
 	Novice::LoadTexture("./Resources/images/card/8.png"),
 	
 	};
-
-
-
-
-
 	//bool isAffectedBySkill[12];
 	////カードの中身の攻撃力
 	int attckA[maxSize] = {};

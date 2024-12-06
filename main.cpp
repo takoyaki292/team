@@ -14,11 +14,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	float kWindowWidth = 1920; // ウィンドウの横幅
 	float kWindowHeight = 1080; // ウィンドウの縦幅
-
-	// ライブラリの初期化
-	//Novice::Initialize(kWindowTitle, 1280, 720);
 	Novice::Initialize(kWindowTitle,(int)kWindowWidth, (int)kWindowHeight);
-	//Novice::SetWindowMode(kFullscreen);
 	// インスタンス生成
 	mapChip* myMapChip=new mapChip();
 	Player*  myPlayer=new Player();
@@ -29,11 +25,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	int scane = 0;
 	enum scane
 	{
+		title,
+		s,
 		oneGame,
-		twoGame
+		twoGame,
+		gameOver,
+		gameClaer,
 	};
 	Vector2 backGroundPosition = {0.f,0.f};
 	int twoGameSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
+	int gameOverSceneT = Novice::LoadTexture("./Resources/images/background/gameOver.png");
+	//int gameClaerSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
+
 	//int num = 0;
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
@@ -55,6 +58,23 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		///
 		switch (scane)
 		{
+		case title:
+			if (keys[DIK_UP] && !preKeys[DIK_UP])
+			{
+				scane = oneGame;
+			}
+			
+			if (keys[DIK_DOWN] && !preKeys[DIK_DOWN])
+			{
+				scane = s;
+			}
+			break;
+		case s:
+			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			{
+				scane = title;
+			}
+			break;
 		case oneGame:
 			// 移動処理
 			myPlayer->Move();
@@ -72,11 +92,33 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
-			myPlayer->IsAlive();
+			myPlayer->BatteUpdate();
 			myCard.BattleMouseC();
 			skill_->BattleUpdate(myCard);
 			judge->BattleUpdate(*myPlayer,*myEnemy,myCard,*skill_);
+
+			if (myPlayer->isAlive == false)
+			{
+				scane = gameOver;
+			}
+			if (myEnemy->isAliveBoss == false)
+			{
+				scane = gameClaer;
+			}
 			break;
+		case gameOver:
+			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			{
+				scane = title;
+			}
+			break;
+		case gameClaer:
+			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			{
+				scane = title;
+			}
+			break;
+
 		}
 		///
 		/// ↑更新処理ここまで
@@ -87,6 +129,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		///
 		switch (scane)
 		{
+		case title:
+			Novice::DrawBox((int)backGroundPosition.x, (int)backGroundPosition.y, (int)kWindowWidth, (int)kWindowHeight, 0.0f, RED, kFillModeSolid);
+			break;
+		case s:
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
+			break;
 		case oneGame:
 			// マップチップの描画
 			myMapChip->NoviceMapChip(myMapChip->mapChipSizeX, myMapChip->mapChipSizeY, myMapChip->chipSizeX, myMapChip->chipSizeY, myMapChip->stageMap,myCard);
@@ -103,6 +151,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myCard.BattleDraw();
 			myPlayer->BattleDraw();
 			skill_->BattleDraw();
+			break;
+		case gameOver:
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, gameOverSceneT, 1, 1, 0.0f, WHITE);
+			break;
+		case gameClaer:
+			Novice::DrawBox((int)backGroundPosition.x, (int)backGroundPosition.y, (int)kWindowWidth, (int)kWindowHeight, 0.0f, WHITE, kFillModeWireFrame);
 			break;
 		}
 		
@@ -127,5 +181,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	delete myEnemy;
 	delete myMapChip;
 	delete myPlayer;
+	delete judge;
+	delete skill_;
 	return 0;
 }

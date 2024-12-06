@@ -94,10 +94,15 @@ void Player::BattleDraw()
 
 void Player::IsAlive()
 {
-	if (isAlive == true&&hp>=0)
+	if (hp<=0||hp==0)
 	{
 		isAlive = false;
 	}
+}
+
+void Player::BatteUpdate()
+{
+	IsAlive();
 }
 
 

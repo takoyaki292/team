@@ -41,6 +41,9 @@
     <ClCompile Include="Jdge.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="gameOver.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -137,5 +140,6 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="Jdge.h" />
+    <ClInclude Include="gameOver.h" />
   </ItemGroup>
 </Project>

@@ -25,6 +25,8 @@ public:
 	int attck = 0;
 
 	bool isCard = false;
+
+	void BatteUpdate();
 private:
 	original player
 	{

@@ -111,6 +111,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="gameOver.cpp" />
     <ClCompile Include="Jdge.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapChip.cpp" />
@@ -151,6 +152,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="con.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameDataManager.h" />
+    <ClInclude Include="gameOver.h" />
     <ClInclude Include="Jdge.h" />
     <ClInclude Include="mapChip.h" />
     <ClInclude Include="Mouse.h" />
