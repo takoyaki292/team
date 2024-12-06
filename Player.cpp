@@ -5,7 +5,7 @@
 
 void Player::Drow() const
 {
-	if (isAlive==false)
+	if (isAlive==true)
 	{
 		Novice::DrawQuad
 		(
@@ -83,6 +83,17 @@ void Player::Move()
 
 Player::Player()
 {
+	hp = 10;
+	isAlive = true;
+	isTurn = false;
+	attck = 0;
+	isCard = false;
+
+	player.position = { 90.f,90.f,0.f };
+	battePlayer.position = { 1500, 800, 0 };
+
+	playerTilePosX = 0;
+	playerTilePosY = 0;
 }
 
 void Player::BattleDraw()
@@ -94,10 +105,11 @@ void Player::BattleDraw()
 
 void Player::IsAlive()
 {
-	if (hp<=0||hp==0)
+	if (hp <= 0)
 	{
 		isAlive = false;
 	}
+
 }
 
 void Player::BatteUpdate()

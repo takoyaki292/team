@@ -60,6 +60,16 @@ void Enemy::Drow()
 
 Enemy::Enemy()
 {
+	isTurn = false;
+	max = 3;
+	attck = 0;
+	isR = false;
+	hp = 10;
+	isAliveBoss = true;
+
+	enemy.position = { 90.0f, 90.0f, 0 };
+	BattlEnemy.position = { 90.0f, 90.0f, 0 };
+	attckNum = 0;
 }
 
 void Enemy::MovePattern1(Player& myPlayer)

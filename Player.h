@@ -20,7 +20,7 @@ public:
 	void IsAlive();
 
 	int hp = 10;
-	bool isAlive = false;
+	bool isAlive = true;
 	bool isTurn = false;
 	int attck = 0;
 

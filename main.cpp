@@ -15,13 +15,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	float kWindowWidth = 1920; // ウィンドウの横幅
 	float kWindowHeight = 1080; // ウィンドウの縦幅
 	Novice::Initialize(kWindowTitle,(int)kWindowWidth, (int)kWindowHeight);
-	// インスタンス生成
-	mapChip* myMapChip=new mapChip();
-	Player*  myPlayer=new Player();
-	Enemy*   myEnemy=new Enemy();
-	card    myCard;
-	Skill* skill_=new Skill();
-	Judge* judge = new Judge(*myPlayer,*myEnemy,myCard);
+	
 	int scane = 0;
 	enum scane
 	{
@@ -36,8 +30,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	int twoGameSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
 	int gameOverSceneT = Novice::LoadTexture("./Resources/images/background/gameOver.png");
 	int sSceneT = Novice::LoadTexture("./Resources/images/background/s.png");
-	//int gameClaerSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
-
+	
+	// インスタンス生成
+	mapChip* myMapChip = new mapChip();
+	Player* myPlayer = new Player();
+	Enemy* myEnemy = new Enemy();
+	card    myCard;
+	Skill* skill_ = new Skill();
+	Judge* judge = new Judge(*myPlayer, *myEnemy, myCard);
 	//int num = 0;
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
@@ -62,6 +62,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case title:
 			if (keys[DIK_UP] && preKeys[DIK_UP])
 			{
+				myMapChip = new mapChip();
+				myPlayer = new Player();
+				myEnemy = new Enemy();
+				myCard;
+				skill_ = new Skill();
+				judge = new Judge(*myPlayer, *myEnemy, myCard);
 				scane = oneGame;
 			}
 			
@@ -92,28 +98,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			
 			break;
 		case twoGame:
-			myPlayer->BatteUpdate();
+			//myPlayer->BatteUpdate();
 			myCard.BattleMouseC();
 			skill_->BattleUpdate(myCard);
 			judge->BattleUpdate(*myPlayer,*myEnemy,myCard,*skill_);
 
-			if (myPlayer->isAlive == false)
-			{
-				scane = gameOver;
-			}
 			if (myEnemy->isAliveBoss == false)
 			{
 				scane = gameClaer;
 			}
+			if(myPlayer->isAlive==false)
+			{
+				scane = gameOver;
+			}
 			break;
 		case gameOver:
-			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = title;
 			}
 			break;
 		case gameClaer:
-			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = title;
 			}
