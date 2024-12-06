@@ -1,37 +1,90 @@
 ﻿#pragma once
 #include "Vector3.h"
 #include "Mouse.h"
+#include "Novice.h"
+
+
 class card
 {
 public:
-
 	card();
 	~card();
-	// カードを手に入れた時の関数
-	void GetCard();
+	
+	void Battle();
 	/// <summary>
-	/// カードの効果
+	/// 革命のスキルの効果
 	/// </summary>
-	void contentCard();
-
-
+	//void revolutionContent();
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw();
-
-	void MouseC();
+	void BattleDraw();
+	/// <summary>
+	/// カードとマウスの当たり判定
+	/// </summary>
+	void BattleMouseC();
+	//カードの枚数
 	static const int numC =7;
 	bool haveCardF[numC] = {};
+	//マウスの左が押されているかのフラグ
+	bool isT = false;
+	
+	int num[numC] = {};
+	
+	//威力
+	int attack ;
+	static constexpr int maxSize = numC+1;
+
+	//カードの画像の変数
+	int cardT[maxSize] = {
+	Novice::LoadTexture("./Resources/images/card/1.png") ,
+	Novice::LoadTexture("./Resources/images/card/2.png") ,
+	Novice::LoadTexture("./Resources/images/card/3.png") ,
+	Novice::LoadTexture("./Resources/images/card/4.png") ,
+	Novice::LoadTexture("./Resources/images/card/5.png") ,
+	Novice::LoadTexture("./Resources/images/card/6.png") ,
+	Novice::LoadTexture("./Resources/images/card/7.png"),
+	Novice::LoadTexture("./Resources/images/card/8.png"),
+	
+	};
+	//bool isAffectedBySkill[12];
+	////カードの中身の攻撃力
+	int attckA[maxSize] = {};
+
+	
 private:
 	int haveCard[numC] = {};
-	Vector3 cardPosition[numC] = {};
+	Vector3 cardPosition[maxSize] = {};
 	int w = 50;
 	int h = 100;
-	int num = -1;
 
 	int mouseX;
 	int mouseY;
+	//マウスがカードの座標いるかのフラグ
 	bool isMouse = false;
-	bool isT = false;
+
+	int tW = 100;
+	int tH= 150;
+public:
+	// カードにふれたかどうかの判定フラグ
+	static const int FlagNunber = 7;// カードの枚数
+
+	bool cardFlag[FlagNunber] = {};// カード
+	//bool BlockFlag = {};// 白ブロック
+
+	// スキルカードにどれだけ当たったか判定する変数
+	float CardCount = 0;
+	// 取れるカードの上限
+	float cardMaximumCount = 3;
+
+	// 他のcppで変数の状態を取得するための関数
+	static card& GetInstance()
+	{
+		static card instance;
+		return instance;
+	}
+
+	void GetCardCount();
+
+	void GetCardNumDraw();
 };
