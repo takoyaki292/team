@@ -35,6 +35,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Vector2 backGroundPosition = {0.f,0.f};
 	int twoGameSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
 	int gameOverSceneT = Novice::LoadTexture("./Resources/images/background/gameOver.png");
+	int sSceneT = Novice::LoadTexture("./Resources/images/background/s.png");
 	//int gameClaerSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
 
 	//int num = 0;
@@ -59,18 +60,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		switch (scane)
 		{
 		case title:
-			if (keys[DIK_UP] && !preKeys[DIK_UP])
+			if (keys[DIK_UP] && preKeys[DIK_UP])
 			{
 				scane = oneGame;
 			}
 			
-			if (keys[DIK_DOWN] && !preKeys[DIK_DOWN])
+			if (keys[DIK_DOWN] && preKeys[DIK_DOWN])
 			{
 				scane = s;
 			}
 			break;
 		case s:
-			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = title;
 			}
@@ -78,7 +79,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case oneGame:
 			// 移動処理
 			myPlayer->Move();
-			//myEnemy.MovePattern1(myPlayer);
 			myMapChip->isDetection(*myPlayer,myCard);
 			myEnemy->MovePattern1(*myPlayer);
 			// 獲得処理(カード)
@@ -133,7 +133,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::DrawBox((int)backGroundPosition.x, (int)backGroundPosition.y, (int)kWindowWidth, (int)kWindowHeight, 0.0f, RED, kFillModeSolid);
 			break;
 		case s:
-			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, sSceneT, 1, 1, 0.0f, WHITE);
 			break;
 		case oneGame:
 			// マップチップの描画
@@ -159,7 +159,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::DrawBox((int)backGroundPosition.x, (int)backGroundPosition.y, (int)kWindowWidth, (int)kWindowHeight, 0.0f, WHITE, kFillModeWireFrame);
 			break;
 		}
-		
+		Novice::ScreenPrintf(0, 0, "scane=%d", scane);
 
 		///
 		/// ↑描画処理ここまで
