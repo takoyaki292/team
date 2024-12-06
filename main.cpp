@@ -165,7 +165,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::DrawBox((int)backGroundPosition.x, (int)backGroundPosition.y, (int)kWindowWidth, (int)kWindowHeight, 0.0f, WHITE, kFillModeWireFrame);
 			break;
 		}
-		Novice::ScreenPrintf(0, 0, "scane=%d", scane);
+		//Novice::ScreenPrintf(0, 0, "scane=%d", scane);
 
 		///
 		/// ↑描画処理ここまで

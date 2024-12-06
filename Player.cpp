@@ -116,5 +116,3 @@ void Player::BatteUpdate()
 {
 	IsAlive();
 }
-
-
