@@ -7,8 +7,9 @@ mapChip::mapChip()
 {
 }
 
-void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16], card& card_)
+void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16], card& card_, int oneBackT)
 {
+	Novice::DrawSprite(0,0, oneBackT, 1.0f, 1.0f, 0.0f, WHITE);
 	// マップチップの生成
 	for (int y = 0; y < mapSizeY; y++)
 	{

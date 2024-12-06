@@ -32,6 +32,7 @@ public:
 	void BattleDrow() ;
 	
 
+	void BattleOneBoss();
 	bool isTurn= false;
 
 	bool isCard = false;
@@ -78,4 +79,6 @@ private:
 	int bossT = Novice::LoadTexture("./Resources/images/enemy/boss.png");
 	Vector2 hpPosition = { 700,100 };
 	Vector2 cardPosition = { 850,400 };
+
+	
 };

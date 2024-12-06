@@ -19,7 +19,7 @@ void Enemy::BattleDrow()
 	
 
 }
-void Enemy::BattleUpdate()
+void Enemy::BattleOneBoss()
 {
 	if (isR == true)
 	{
@@ -34,10 +34,14 @@ void Enemy::BattleUpdate()
 			// 最初の値を使用
 			attck = availableNums[0];
 
-			attckNum=(attck-1);
+			attckNum = (attck - 1);
 		}
 		isR = false;
 	}
+}
+void Enemy::BattleUpdate()
+{
+	BattleOneBoss();
 	if (hp <= 0 || hp == 0)
 	{
 		isAliveBoss = false;
