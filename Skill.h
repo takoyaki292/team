@@ -44,6 +44,8 @@ public:
 	void BattleRandomNum(card& cardInstance);
 
 	bool isRevolution = false;
+
+	void Reset();
 private:
 	//スキルボタンを表示するため
 	original skillBotan_

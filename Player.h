@@ -27,6 +27,8 @@ public:
 	bool isCard = false;
 
 	void BatteUpdate();
+
+	void Reset();
 private:
 	original player
 	{

@@ -33,6 +33,9 @@ public:
 
 
 	void BattleOneBoss();
+	void BattleTwoBoss();
+
+	void Reset();
 	bool isTurn = false;
 
 	bool isCard = false;
@@ -43,6 +46,10 @@ public:
 	int hp = 10;
 
 	bool isAliveBoss = true;
+
+	bool isOneBoss = true;
+	bool isTwoBoss = false;
+
 private:
 	mapChip myMapChip;
 	card card_;

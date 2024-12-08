@@ -86,6 +86,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			}
 			break;
 		case onePhaseMapGame:
+			myEnemy->isOneBoss = true;
+			myEnemy->isTwoBoss = false;
 			// 移動処理
 			myPlayer->Move();
 			myMapChip->isDetection(*myPlayer,*myCard,myMapChip->stageMap);
@@ -109,13 +111,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			if (myEnemy->isAliveBoss == false)
 			{
 				scane = twoPhaseMapGame;
-				
+				myMapChip = new mapChip();
 				myPlayer = new Player();
 				myEnemy = new Enemy();
-				myCard = new card();;
+				myCard = new card();
 				skill_ = new Skill();
 				judge = new Judge(*myPlayer, *myEnemy, *myCard);
-				myMapChip = new mapChip();
 				//myMapChip->ResetCardFlagsOnMapChange(myMapChip->stageTwoMap, myMapChip->mapChipSizeX, myMapChip->chipSizeY, *myCard);
 			}
 			if(myPlayer->isAlive==false)
@@ -124,11 +125,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			}
 			if (myEnemy->isAliveBoss == false)
 			{
+				
 				scane = twoPhaseMapGame;
 			}
 			break;
 		case twoPhaseMapGame:
-			
+			myEnemy->isOneBoss = false;
+			myEnemy->isTwoBoss = true;
 			// 移動処理
 			myPlayer->Move();
 			myMapChip->isDetection(*myPlayer, *myCard,myMapChip->stageTwoMap);

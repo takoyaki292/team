@@ -116,3 +116,18 @@ void Player::BatteUpdate()
 {
 	IsAlive();
 }
+
+void Player::Reset()
+{
+	hp = 10;
+	isAlive = true;
+	isTurn = false;
+	attck = 0;
+	isCard = false;
+
+	player.position = { 90.f,90.f,0.f };
+	battePlayer.position = { 1500, 800, 0 };
+
+	playerTilePosX = 0;
+	playerTilePosY = 0;
+}

@@ -111,26 +111,3 @@ void mapChip::isDetection(Player& player_, card& card_, int stageMap_[][16])
 	///Novice::ScreenPrintf(0, 100, "%f\n", card::GetInstance().CardCount);
 }
 
-// マップ切り替え用の関数
-void mapChip::ResetCardFlagsOnMapChange(int stageMap_[][16], int newMapSizeX, int newMapSizeY, card& card_) {
-	for (int i = 0; i < cardNumber; i++) {
-		bool foundCard = false;
-
-		// 新しいマップに該当するカードが存在するか確認
-		for (int y = 0; y < newMapSizeY; y++) {
-			for (int x = 0; x < newMapSizeX; x++) {
-				if (stageMap_[y][x] == 21 + i) {
-					foundCard = true;
-					break;
-				}
-			}
-			if (foundCard) break;
-		}
-
-		// カードが新しいマップにない場合はリセット
-		if (!foundCard) {
-			card_.cardFlag[i] = false;
-			isCard[i] = false;
-		}
-	}
-}

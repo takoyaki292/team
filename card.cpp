@@ -99,6 +99,24 @@ void card::BattleMouseC()
 	}
 }
 
+void card::Reset()
+{
+	for (int i = 0; i < numC; i++)
+	{
+		cardFlag[i] = false;
+		if (haveCardF[i] == true)
+		{
+			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
+		}
+		if (cardFlag[i]) {
+			num[i] = i + 1;
+		}
+	}
+	CardCount = 0;
+	cardMaximumCount = 3;
+	CardUpNumber = 1;
+}
+
 
 void card::GetCardCount()
 {

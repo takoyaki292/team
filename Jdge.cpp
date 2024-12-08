@@ -90,3 +90,12 @@ void Judge::BattleUpdate(Player& player_,Enemy& enemy_,card& card_, Skill& skill
 		player_.isCard = false;
 	}
 }
+
+void Judge::Reset(Player& player_, Enemy& enemy_, card& card_)
+{
+	player_.isTurn = false;
+	enemy_.isTurn = false;
+	player_.attck = 0;
+	enemy_.attck = 0;
+	card_.isT = false;
+}

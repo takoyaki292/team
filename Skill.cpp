@@ -153,3 +153,16 @@ void Skill::BattleRandomNum(card& cardInstance)
     }
 }
 
+void Skill::Reset()
+{
+    isM = false;
+    isTrigger = false;
+
+    for (int i = 0; i < skillNum; i++)
+    {
+        skillPosition[i] = { 600.f + i * 300.f,300.f };
+        skillF[i] = false;
+        r[i] = { 50.0f,50.f };
+    }
+}
+

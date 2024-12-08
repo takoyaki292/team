@@ -29,6 +29,8 @@ public:
 	/// 更新(ラウンド)
 	/// </summary>
 	void BattleUpdate(Player& player_, Enemy& enemy_, card& card_, Skill& skill_);
+
+	void Reset(Player& player_, Enemy& enemy_, card& card_);
 private:
 	//Skill skill_;
 	bool isA = false;

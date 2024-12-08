@@ -51,7 +51,7 @@ public:
 	////カードの中身の攻撃力
 	int attckA[maxSize] = {};
 
-	
+	void Reset();
 private:
 	int haveCard[numC] = {};
 	Vector3 cardPosition[maxSize] = {};

@@ -39,9 +39,51 @@ void Enemy::BattleOneBoss()
 		isR = false;
 	}
 }
+void Enemy::BattleTwoBoss()
+{
+	if (isR == true)
+	{
+		if (isTurn)
+		{
+			static std::mt19937 g(std::random_device{}()); // 乱数生成器を一度だけ初期化
+			std::vector<int> availableNums = { 4, 5, 6 };
+
+			// ランダムに1つ選択
+			std::shuffle(availableNums.begin(), availableNums.end(), g);
+
+			// 最初の値を使用
+			attck = availableNums[0];
+
+			attckNum = (attck - 1);
+		}
+		isR = false;
+	}
+}
+void Enemy::Reset()
+{
+	isTurn = false;
+	max = 3;
+	attck = 0;
+	isR = false;
+	hp = 10;
+	isAliveBoss = true;
+
+	enemy.position = { 90.0f, 90.0f, 0 };
+	BattlEnemy.position = { 90.0f, 90.0f, 0 };
+	attckNum = 0;
+}
 void Enemy::BattleUpdate()
 {
-	BattleOneBoss();
+	if (isOneBoss==true && isTwoBoss == false)
+	{
+		BattleOneBoss();
+	}
+	if (isOneBoss==false && isTwoBoss)
+	{
+		BattleTwoBoss();
+	}
+
+	
 	if (hp <= 0 || hp == 0)
 	{
 		isAliveBoss = false;
@@ -74,6 +116,8 @@ Enemy::Enemy()
 	enemy.position = { 90.0f, 90.0f, 0 };
 	BattlEnemy.position = { 90.0f, 90.0f, 0 };
 	attckNum = 0;
+	isOneBoss = true;
+	isTwoBoss = false;
 }
 
 void Enemy::MovePattern1(Player& myPlayer)

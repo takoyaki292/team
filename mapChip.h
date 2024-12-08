@@ -21,7 +21,7 @@ public:
 	// カウントをアップさせる関数
 	void isDetection(Player& player_, card& card_, int stageMap_[][16]);
 
-	void ResetCardFlagsOnMapChange(int stageMap_[][16], int newMapSizeX, int newMapSizeY,card& card_);
+	//void ResetCardFlagsOnMapChange(int stageMap_[][16], int newMapSizeX, int newMapSizeY,card& card_);
 
 	// マップ情報
 	int stageMap[mapChipSizeY][mapChipSizeX] =

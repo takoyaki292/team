@@ -138,8 +138,10 @@
     <ClInclude Include="AABB.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Mouse.h" />
-    <ClInclude Include="Skill.h" />
     <ClInclude Include="Jdge.h" />
     <ClInclude Include="gameOver.h" />
+    <ClInclude Include="Skill.h">
+      <Filter>KamataEngine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
