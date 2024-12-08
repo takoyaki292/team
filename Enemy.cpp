@@ -4,11 +4,11 @@
 #include <vector>
 #include <random>
 
-void Enemy::BattleDrow()
+void Enemy::BattleDrow(int oneBossT_)
 {
 	if (isAliveBoss)
 	{
-		Novice::DrawSprite((int)BattlEnemy.position.x, (int)BattlEnemy.position.y, bossT, 0.2f, 0.2f, 0.0f, WHITE);
+		Novice::DrawSprite((int)BattlEnemy.position.x, (int)BattlEnemy.position.y, oneBossT_, 0.2f, 0.2f, 0.0f, WHITE);
 		if (isTurn)
 		{
 			Novice::DrawSprite((int)cardPosition.x, (int)cardPosition.y, card_.cardT[attckNum], 0.4f, 0.4f, 0.0f, WHITE);
@@ -126,7 +126,7 @@ void Enemy::MovePattern1(Player& myPlayer)
 	enemy.speed.x = enemy.Size.x; // スピードの初期化
 	enemy.speed.y = enemy.Size.y; // スピードの初期化
 
-	if (myPlayer.MoveCount % 5 == 0 && enemy.speed.x != 0)//三の倍数の時に行動
+	if (myPlayer.MoveCount % 2 == 0 && enemy.speed.x != 0)//三の倍数の時に行動
 	{
 		int randomPattern = rand() % 4 + 1;  // 1から4のランダムなパターンを生成
 

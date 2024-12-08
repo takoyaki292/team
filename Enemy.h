@@ -29,7 +29,7 @@ public:
 	/// <summary>
 	/// バトルの描画
 	/// </summary>
-	void BattleDrow();
+	void BattleDrow(int oneBossT_);
 
 
 	void BattleOneBoss();
@@ -50,6 +50,8 @@ public:
 	bool isOneBoss = true;
 	bool isTwoBoss = false;
 
+	int oneBossT = Novice::LoadTexture("./Resources/images/enemy/boss.png");
+	int twoBossT = Novice::LoadTexture("./Resources/images/enemy/enemy01.png");
 private:
 	mapChip myMapChip;
 	card card_;
@@ -83,7 +85,7 @@ private:
 
 	int attckNum = 0;
 
-	int bossT = Novice::LoadTexture("./Resources/images/enemy/boss.png");
+	
 	Vector2 hpPosition = { 700,100 };
 	Vector2 cardPosition = { 850,400 };
 

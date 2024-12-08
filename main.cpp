@@ -6,7 +6,7 @@
 #include "Skill.h"
 #include "Jdge.h"
 
-const char kWindowTitle[] = "t";
+const char kWindowTitle[] = "集めてカードバトル";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -21,6 +21,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	{
 		title,
 		s,
+		battleS,
 		onePhaseMapGame,
 		onePhaseBattleGame,
 		twoPhaseMapGame,
@@ -32,7 +33,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	int gameTitleSceneT = Novice::LoadTexture("./Resources/images/background/gameTitle.png");
 	int twoGameSceneT = Novice::LoadTexture("./Resources/images/background/scene.png");
 	int gameOverSceneT = Novice::LoadTexture("./Resources/images/background/gameOver.png");
+	int gameClaerSceneT = Novice::LoadTexture("./Resources/images/background/gameClear.png");
 	int sSceneT = Novice::LoadTexture("./Resources/images/background/s.png");
+	int sBattleSceneT = Novice::LoadTexture("./Resources/images/background/a.png");
 	
 	// インスタンス生成
 	mapChip* myMapChip = new mapChip();
@@ -80,9 +83,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			}
 			break;
 		case s:
+			if (keys[DIK_D] && preKeys[DIK_D])
+			{
+				scane = battleS;
+			}
+			break;
+		case battleS:
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE])
 			{
 				scane = title;
+			}
+			if (keys[DIK_A] && preKeys[DIK_A])
+			{
+				scane =s;
 			}
 			break;
 		case onePhaseMapGame:
@@ -91,7 +104,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			// 移動処理
 			myPlayer->Move();
 			myMapChip->isDetection(*myPlayer,*myCard,myMapChip->stageMap);
-			myEnemy->MovePattern1(*myPlayer);
+			//myEnemy->MovePattern1(*myPlayer);
 			// 獲得処理(カード)
 			//myCard.GetCardCount();
 			if (myMapChip->bossEnemyFlag==true)
@@ -128,6 +141,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 				
 				scane = twoPhaseMapGame;
 			}
+
+			if (keys[DIK_R] && preKeys[DIK_R])
+			{
+				scane = title;
+			}
 			break;
 		case twoPhaseMapGame:
 			myEnemy->isOneBoss = false;
@@ -135,7 +153,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			// 移動処理
 			myPlayer->Move();
 			myMapChip->isDetection(*myPlayer, *myCard,myMapChip->stageTwoMap);
-			myEnemy->MovePattern1(*myPlayer);
+			//myEnemy->MovePattern1(*myPlayer);
 			// 獲得処理(カード)
 			//myCard.GetCardCount();
 			if (myMapChip->bossEnemyFlag == true)
@@ -148,6 +166,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			break;
 		case twoPhaseBattleGame:
 			//myPlayer->BatteUpdate();
+			if (keys[DIK_R] && preKeys[DIK_R])
+			{
+				scane = title;
+			}
 			myCard->BattleMouseC();
 			skill_->BattleUpdate(*myCard);
 			judge->BattleUpdate(*myPlayer, *myEnemy,*myCard, *skill_);
@@ -190,6 +212,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case s:
 			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, sSceneT, 1, 1, 0.0f, WHITE);
 			break;
+		case battleS:
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, sBattleSceneT, 1, 1, 0.0f, WHITE);
+			break;
 		case onePhaseMapGame:
 			// マップチップの描画
 			myMapChip->NoviceMapChip(myMapChip->mapChipSizeX, myMapChip->mapChipSizeY, myMapChip->chipSizeX, myMapChip->chipSizeY, myMapChip->stageMap,*myCard,myMapChip->oneMapBackT);
@@ -198,11 +223,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myPlayer->Drow();
 
 			//敵の描画
-			myEnemy->Drow();
+			//myEnemy->Drow();
 			break;
 		case onePhaseBattleGame:
 			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
-			myEnemy->BattleDrow();
+			myEnemy->BattleDrow(myEnemy->oneBossT);
 			myCard->BattleDraw();
 			myPlayer->BattleDraw();
 			skill_->BattleDraw();
@@ -215,11 +240,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			myPlayer->Drow();
 
 			//敵の描画
-			myEnemy->Drow();
+			//myEnemy->Drow();
 			break;
 		case twoPhaseBattleGame:
 			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
-			myEnemy->BattleDrow();
+			myEnemy->BattleDrow(myEnemy->twoBossT);
 			myCard->BattleDraw();
 			myPlayer->BattleDraw();
 			skill_->BattleDraw();
@@ -228,7 +253,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, gameOverSceneT, 1, 1, 0.0f, WHITE);
 			break;
 		case gameClaer:
-			Novice::DrawBox((int)backGroundPosition.x, (int)backGroundPosition.y, (int)kWindowWidth, (int)kWindowHeight, 0.0f, WHITE, kFillModeWireFrame);
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, gameClaerSceneT, 1, 1, 0.0f, WHITE);
 			break;
 		}
 		//Novice::ScreenPrintf(0, 0, "scane=%d", scane);
