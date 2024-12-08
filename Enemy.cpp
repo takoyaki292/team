@@ -4,7 +4,7 @@
 #include <vector>
 #include <random>
 
-void Enemy::BattleDrow() 
+void Enemy::BattleDrow()
 {
 	if (isAliveBoss)
 	{
@@ -16,7 +16,7 @@ void Enemy::BattleDrow()
 
 		Novice::DrawBox((int)hpPosition.x, (int)hpPosition.y, hp * 50, 30, 0.0f, RED, kFillModeSolid);
 	}
-	
+
 
 }
 void Enemy::BattleOneBoss()

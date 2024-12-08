@@ -74,7 +74,7 @@ public:
 	float frameX = 0.0f;
 	float endFrameX = 100.0f;
 
-	
+
 	card* card_;
-	
+
 };

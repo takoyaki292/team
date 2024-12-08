@@ -9,7 +9,7 @@ mapChip::mapChip()
 
 void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16], card& card_, int oneBackT)
 {
-	Novice::DrawSprite(0,0, oneBackT, 1.0f, 1.0f, 0.0f, WHITE);
+	Novice::DrawSprite(0, 0, oneBackT, 1.0f, 1.0f, 0.0f, WHITE);
 	// マップチップの生成
 	for (int y = 0; y < mapSizeY; y++)
 	{
@@ -24,12 +24,12 @@ void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSize
 			//// ボス
 			if (stageMap_[y][x] == 12)
 			{
-				if (bossEnemyFlag==false)
+				if (bossEnemyFlag == false)
 				{
 					Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, myTexture.enemy, 2.0f, 2.0f, 0.0f, WHITE); // マップチップの生成
 				}
 			}
-			
+
 			// 背景ブロック
 			if (stageMap_[y][x] == 11)
 			{
@@ -40,20 +40,20 @@ void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSize
 			{
 				if (stageMap_[y][x] == 21 + i)
 				{
-					if (card_.cardFlag[i] == false&&isCard[i] == false)
+					if (card_.cardFlag[i] == false && isCard[i] == false)
 					{
 						Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, (int)myTexture.card[i], 1.0f, 1.0f, 0.0f, WHITE);
 					}
-					else if(isCard[i] ==true)
+					else if (isCard[i] == true)
 					{
 						Novice::DrawSprite(x * chipSizeX_, y * chipSizeY_, (int)myTexture.block, 1.0f, 1.0f, 0.0f, WHITE);
 					}
 				}
-			}	
+			}
 		}
 	}
 
-	
+
 	// カードを詰めて表示
 	int drawIndex = 0; // 詰めて描画するためのインデックス
 	for (int i = 0; i < cardNumber; i++)
@@ -66,14 +66,14 @@ void mapChip::NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSize
 	}
 }
 
-void mapChip::isDetection(Player& player_, card& card_) 
+void mapChip::isDetection(Player& player_, card& card_, int stageMap_[][16])
 {
 	///====================
 	// プレイヤーと敵の当たり判定処理
 	///====================
 
-	if (stageMap[player_.playerTilePosY][player_.playerTilePosX] == 12// カード1に触れたら 
-		|| stageMap[player_.playerTilePosY][player_.playerTilePosX] == 13)//
+	if (stageMap_[player_.playerTilePosY][player_.playerTilePosX] == 12// カード1に触れたら 
+		|| stageMap_[player_.playerTilePosY][player_.playerTilePosX] == 13)//
 	{
 		bossEnemyFlag = true;
 	}
@@ -84,7 +84,7 @@ void mapChip::isDetection(Player& player_, card& card_)
 
 	for (int i = 0; i < cardNumber; i++) // カードの数が7枚の場合
 	{
-		if (stageMap[player_.playerTilePosY][player_.playerTilePosX] == 21 + i// カード1に触れたら 
+		if (stageMap_[player_.playerTilePosY][player_.playerTilePosX] == 21 + i// カード1に触れたら 
 			|| card_.CardCount >= card_.cardMaximumCount)// カードを取れる上限まで行ったら
 		{
 			//一度しか通らなくさせるためフラグが折れる前に一度だけ実行
@@ -96,7 +96,7 @@ void mapChip::isDetection(Player& player_, card& card_)
 					isCard[i] = true;
 					card_.cardFlag[i] = true;
 				}
-				
+
 			}
 			isCard[i] = true;
 		}
@@ -109,4 +109,28 @@ void mapChip::isDetection(Player& player_, card& card_)
 
 	// デバック
 	///Novice::ScreenPrintf(0, 100, "%f\n", card::GetInstance().CardCount);
+}
+
+// マップ切り替え用の関数
+void mapChip::ResetCardFlagsOnMapChange(int stageMap_[][16], int newMapSizeX, int newMapSizeY, card& card_) {
+	for (int i = 0; i < cardNumber; i++) {
+		bool foundCard = false;
+
+		// 新しいマップに該当するカードが存在するか確認
+		for (int y = 0; y < newMapSizeY; y++) {
+			for (int x = 0; x < newMapSizeX; x++) {
+				if (stageMap_[y][x] == 21 + i) {
+					foundCard = true;
+					break;
+				}
+			}
+			if (foundCard) break;
+		}
+
+		// カードが新しいマップにない場合はリセット
+		if (!foundCard) {
+			card_.cardFlag[i] = false;
+			isCard[i] = false;
+		}
+	}
 }

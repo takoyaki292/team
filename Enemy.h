@@ -29,14 +29,14 @@ public:
 	/// <summary>
 	/// バトルの描画
 	/// </summary>
-	void BattleDrow() ;
-	
+	void BattleDrow();
+
 
 	void BattleOneBoss();
-	bool isTurn= false;
+	bool isTurn = false;
 
 	bool isCard = false;
-	int max=3;
+	int max = 3;
 	int attck;
 
 	bool isR = false;
@@ -73,12 +73,12 @@ private:
 		{0, 0, 0}, // スピード
 		{Novice::LoadTexture("./Resources/images/player/enemy01.png")}
 	};
-	
-	int attckNum=0;
+
+	int attckNum = 0;
 
 	int bossT = Novice::LoadTexture("./Resources/images/enemy/boss.png");
 	Vector2 hpPosition = { 700,100 };
 	Vector2 cardPosition = { 850,400 };
 
-	
+
 };

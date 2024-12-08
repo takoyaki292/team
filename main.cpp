@@ -23,6 +23,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		s,
 		onePhaseMapGame,
 		onePhaseBattleGame,
+		twoPhaseMapGame,
+		twoPhaseBattleGame,
 		gameOver,
 		gameClaer,
 	};
@@ -36,9 +38,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	mapChip* myMapChip = new mapChip();
 	Player* myPlayer = new Player();
 	Enemy* myEnemy = new Enemy();
-	card    myCard;
+	card* myCard=new card();
 	Skill* skill_ = new Skill();
-	Judge* judge = new Judge(*myPlayer, *myEnemy, myCard);
+	Judge* judge = new Judge(*myPlayer, *myEnemy, *myCard);
 	//int num = 0;
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
@@ -66,9 +68,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 				myMapChip = new mapChip();
 				myPlayer = new Player();
 				myEnemy = new Enemy();
-				myCard;
+				myCard=new card();
 				skill_ = new Skill();
-				judge = new Judge(*myPlayer, *myEnemy, myCard);
+				judge = new Judge(*myPlayer, *myEnemy, *myCard);
 				scane = onePhaseMapGame;
 			}
 			
@@ -86,29 +88,72 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case onePhaseMapGame:
 			// 移動処理
 			myPlayer->Move();
-			myMapChip->isDetection(*myPlayer,myCard);
+			myMapChip->isDetection(*myPlayer,*myCard,myMapChip->stageMap);
 			myEnemy->MovePattern1(*myPlayer);
 			// 獲得処理(カード)
 			//myCard.GetCardCount();
 			if (myMapChip->bossEnemyFlag==true)
 			{
 				scane = onePhaseBattleGame;
-				myCard.Battle();
+				myCard->Battle();
 				myMapChip->bossEnemyFlag = false;
 			}
 			
 			break;
 		case onePhaseBattleGame:
 			//myPlayer->BatteUpdate();
-			myCard.BattleMouseC();
-			skill_->BattleUpdate(myCard);
-			judge->BattleUpdate(*myPlayer,*myEnemy,myCard,*skill_);
+			myCard->BattleMouseC();
+			skill_->BattleUpdate(*myCard);
+			judge->BattleUpdate(*myPlayer,*myEnemy,*myCard,*skill_);
+
+			if (myEnemy->isAliveBoss == false)
+			{
+				scane = twoPhaseMapGame;
+				
+				myPlayer = new Player();
+				myEnemy = new Enemy();
+				myCard = new card();;
+				skill_ = new Skill();
+				judge = new Judge(*myPlayer, *myEnemy, *myCard);
+				myMapChip = new mapChip();
+				//myMapChip->ResetCardFlagsOnMapChange(myMapChip->stageTwoMap, myMapChip->mapChipSizeX, myMapChip->chipSizeY, *myCard);
+			}
+			if(myPlayer->isAlive==false)
+			{
+				scane = gameOver;
+			}
+			if (myEnemy->isAliveBoss == false)
+			{
+				scane = twoPhaseMapGame;
+			}
+			break;
+		case twoPhaseMapGame:
+			
+			// 移動処理
+			myPlayer->Move();
+			myMapChip->isDetection(*myPlayer, *myCard,myMapChip->stageTwoMap);
+			myEnemy->MovePattern1(*myPlayer);
+			// 獲得処理(カード)
+			//myCard.GetCardCount();
+			if (myMapChip->bossEnemyFlag == true)
+			{
+				scane = twoPhaseBattleGame;
+				myCard->Battle();
+				myMapChip->bossEnemyFlag = false;
+			}
+
+			break;
+		case twoPhaseBattleGame:
+			//myPlayer->BatteUpdate();
+			myCard->BattleMouseC();
+			skill_->BattleUpdate(*myCard);
+			judge->BattleUpdate(*myPlayer, *myEnemy,*myCard, *skill_);
 
 			if (myEnemy->isAliveBoss == false)
 			{
 				scane = gameClaer;
 			}
-			if(myPlayer->isAlive==false)
+			if (myPlayer->isAlive == false)
 			{
 				scane = gameOver;
 			}
@@ -144,7 +189,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			break;
 		case onePhaseMapGame:
 			// マップチップの描画
-			myMapChip->NoviceMapChip(myMapChip->mapChipSizeX, myMapChip->mapChipSizeY, myMapChip->chipSizeX, myMapChip->chipSizeY, myMapChip->stageMap,myCard,myMapChip->oneMapBackT);
+			myMapChip->NoviceMapChip(myMapChip->mapChipSizeX, myMapChip->mapChipSizeY, myMapChip->chipSizeX, myMapChip->chipSizeY, myMapChip->stageMap,*myCard,myMapChip->oneMapBackT);
 
 			//プレイヤーの描画
 			myPlayer->Drow();
@@ -155,7 +200,24 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		case onePhaseBattleGame:
 			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
 			myEnemy->BattleDrow();
-			myCard.BattleDraw();
+			myCard->BattleDraw();
+			myPlayer->BattleDraw();
+			skill_->BattleDraw();
+			break;
+		case twoPhaseMapGame:
+			// マップチップの描画
+			myMapChip->NoviceMapChip(myMapChip->mapChipSizeX, myMapChip->mapChipSizeY, myMapChip->chipSizeX, myMapChip->chipSizeY, myMapChip->stageTwoMap, *myCard, myMapChip->oneMapBackT);
+
+			//プレイヤーの描画
+			myPlayer->Drow();
+
+			//敵の描画
+			myEnemy->Drow();
+			break;
+		case twoPhaseBattleGame:
+			Novice::DrawSprite((int)backGroundPosition.x, (int)backGroundPosition.y, twoGameSceneT, 1, 1, 0.0f, WHITE);
+			myEnemy->BattleDrow();
+			myCard->BattleDraw();
 			myPlayer->BattleDraw();
 			skill_->BattleDraw();
 			break;

@@ -6,14 +6,18 @@ card::card()
 {
 	for (int i = 0; i < numC; i++)
 	{
+		cardFlag[i] = false;
 		if (haveCardF[i] == true)
 		{
 			cardPosition[i] = Vector3(600.f + i * 70.f, 800.f, 0);
 		}
 		if (cardFlag[i]) {
 			num[i] = i + 1;
-		}	
+		}
 	}
+	CardCount = 0;
+	cardMaximumCount = 3;
+	CardUpNumber = 1;
 }
 
 card::~card()
@@ -98,11 +102,12 @@ void card::BattleMouseC()
 
 void card::GetCardCount()
 {
-	// 増やす数字
-	int CardUpNumber = 1;
 	CardCount = CardCount + CardUpNumber;
-	CardUpNumber--;
+	if (CardUpNumber > 0) {
+		CardUpNumber--;  // CardUpNumber をゼロ以下にしない
+	}
 }
+
 
 void card::GetCardNumDraw()
 {

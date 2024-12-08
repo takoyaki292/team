@@ -16,10 +16,12 @@ public:
 	const int chipSizeY = 120; // マップチップの横サイズ
 
 	//マップチップの表示
-	void NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16], card& card_,int oneBackT);
+	void NoviceMapChip(const int mapSizeX, const int mapSizeY, int chipSizeX_, int chipSizeY_, int stageMap_[][16], card& card_, int oneBackT);
 
 	// カウントをアップさせる関数
-	void isDetection(Player& player_, card& card_) ;
+	void isDetection(Player& player_, card& card_, int stageMap_[][16]);
+
+	void ResetCardFlagsOnMapChange(int stageMap_[][16], int newMapSizeX, int newMapSizeY,card& card_);
 
 	// マップ情報
 	int stageMap[mapChipSizeY][mapChipSizeX] =
@@ -56,7 +58,7 @@ public:
 
 	bool bossEnemyFlag = false;
 
-	int mapHaveCard={ Novice::LoadTexture("./Resources/images/card/mapCard.png") };
+	int mapHaveCard = { Novice::LoadTexture("./Resources/images/card/mapCard.png") };
 	int oneMapBackT = Novice::LoadTexture("./Resources/images/background/mapScene.png");
 private:
 
@@ -70,7 +72,7 @@ private:
 		{
 			Novice::LoadTexture("./Resources/images/mapChip/bosMapChip.png")// ボス
 		},
-		
+
 		{
 			Novice::LoadTexture("./Resources/images/mapChip/card01.png"),// カード1
 			Novice::LoadTexture("./Resources/images/mapChip/card01.png"),// カード2
@@ -82,17 +84,17 @@ private:
 		}
 	};
 
-	
+
 	const int cardNumber = 7;// カードの枚数
 
 	bool isCard[7] = {};
 
-	
+
 	//マップ上の敵の画像
 	//const static int numEnemy = 4;
 	//int mpaEnemy[numEnemy] = {
 	//
 	//};
-	
-	
+
+
 };

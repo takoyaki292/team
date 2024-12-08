@@ -65,6 +65,10 @@ private:
 
 	int tW = 100;
 	int tH= 150;
+
+	// 増やす数字
+	int CardUpNumber = 1;
+	
 public:
 	// カードにふれたかどうかの判定フラグ
 	static const int FlagNunber = 7;// カードの枚数
